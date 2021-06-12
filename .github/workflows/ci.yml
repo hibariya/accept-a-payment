@@ -160,3 +160,13 @@ jobs:
         run: |
           cd custom-payment-flow/client/android-kotlin
           ./gradlew build
+
+  ios_build:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Build
+        run: |
+          cd custom-payment-flow/client/ios-swiftui
+          pod install
+          xcodebuild -workspace AcceptAPayment.xcworkspace/ build
