@@ -170,4 +170,4 @@ jobs:
           cd custom-payment-flow/client/ios-swiftui
           pod install
           xcodebuild -list -workspace AcceptAPayment.xcworkspace/
-          # xcodebuild -workspace AcceptAPayment.xcworkspace/ build
+          xcodebuild -scheme AcceptAPayment -workspace AcceptAPayment.xcworkspace/ build
