@@ -169,8 +169,8 @@ jobs:
         run: |
           cd custom-payment-flow/client/ios-swiftui
           pod install
-          CODE_SIGN_IDENTITY=""
-          CODE_SIGNING_REQUIRED="NO"
-          CODE_SIGN_ENTITLEMENTS=""
-          CODE_SIGNING_ALLOWED="NO"
+          export CODE_SIGN_IDENTITY=""
+          export CODE_SIGNING_REQUIRED="NO"
+          export CODE_SIGN_ENTITLEMENTS=""
+          export CODE_SIGNING_ALLOWED="NO"
           xcodebuild -scheme AcceptAPayment -workspace AcceptAPayment.xcworkspace/ build
