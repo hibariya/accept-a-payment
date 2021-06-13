@@ -169,14 +169,8 @@ jobs:
         run: |
           cd custom-payment-flow/client/ios-swiftui
           pod install
-          xcodebuild -list -workspace AcceptAPayment.xcworkspace/
-          echo '--- Scheme: AcceptAPayment ----------------------------------------------------------------------------'
-          xcodebuild -scheme AcceptAPayment -workspace AcceptAPayment.xcworkspace/ build CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED="NO" CODE_SIGN_ENTITLEMENTS="" CODE_SIGNING_ALLOWED="NO"
-          echo '--- Scheme: Pods--AcceptAPayment ----------------------------------------------------------------------------'
-          xcodebuild -scheme Pods-AcceptAPayment -workspace AcceptAPayment.xcworkspace/ build CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED="NO" CODE_SIGN_ENTITLEMENTS="" CODE_SIGNING_ALLOWED="NO"
-          echo '--- Scheme: Stripe ----------------------------------------------------------------------------'
-          xcodebuild -scheme Stripe -workspace AcceptAPayment.xcworkspace/ build CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED="NO" CODE_SIGN_ENTITLEMENTS="" CODE_SIGNING_ALLOWED="NO"
-          echo '--- Scheme: Stripe-Stripe ----------------------------------------------------------------------------'
-          xcodebuild -scheme Stripe-Stripe -workspace AcceptAPayment.xcworkspace/ build CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED="NO" CODE_SIGN_ENTITLEMENTS="" CODE_SIGNING_ALLOWED="NO"
-          echo '--- Scheme: Stripe-Stripe3DS2 ----------------------------------------------------------------------------'
-          xcodebuild -scheme Stripe-Stripe3DS2 -workspace AcceptAPayment.xcworkspace/ build CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED="NO" CODE_SIGN_ENTITLEMENTS="" CODE_SIGNING_ALLOWED="NO"
+          CODE_SIGN_IDENTITY=""
+          CODE_SIGNING_REQUIRED="NO"
+          CODE_SIGN_ENTITLEMENTS=""
+          CODE_SIGNING_ALLOWED="NO"
+          xcodebuild -scheme AcceptAPayment -workspace AcceptAPayment.xcworkspace/ build
