@@ -37,6 +37,7 @@ class AlipayActivity : AppCompatActivity() {
         restartDemo: Boolean = false
     ) {
         runOnUiThread {
+            doesNotExist()
             val builder = AlertDialog.Builder(this)
                 .setTitle(title)
                 .setMessage(message)

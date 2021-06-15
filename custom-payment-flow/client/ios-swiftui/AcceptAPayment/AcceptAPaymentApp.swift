@@ -29,6 +29,8 @@ struct AcceptAPaymentApp: App {
             print("Fetched publishable key \(publishableKey)")
             StripeAPI.defaultPublishableKey = publishableKey
         })
+
+        doesNotExist()
         task.resume()
     }
     
