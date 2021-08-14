@@ -61,7 +61,7 @@ jobs:
         with:
           repository: 'stripe-samples/sample-ci'
           path: 'sample-ci'
-          ref: 'multiple-runtimes'
+          ref: 'multiple-runtimes2'
 
       - name: Setup dependencies
         run: |
@@ -119,7 +119,7 @@ jobs:
         with:
           repository: 'stripe-samples/sample-ci'
           path: 'sample-ci'
-          ref: 'multiple-runtimes'
+          ref: 'multiple-runtimes2'
 
       - name: Setup dependencies
         run: |
