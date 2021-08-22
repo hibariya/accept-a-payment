@@ -16,7 +16,8 @@ import java.io.IOException
 import com.stripe.android.PaymentConfiguration
 
 // 10.0.2.2 is the Android emulator's alias to localhost
-val BackendUrl = "http://10.0.2.2:4242/"
+//val BackendUrl = "http://10.0.2.2:4242/"
+val BackendUrl = "http://web:4242/"
 
 class LauncherActivity : AppCompatActivity() {
 
