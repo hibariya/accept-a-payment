@@ -10,6 +10,7 @@ services:
     environment:
       - DEVICE=Nexus 5
       - APPIUM=true
+      - SERVER_URL=${SERVER_URL:-http://web:4242}
 
     volumes:
       - .:/work
