@@ -191,3 +191,62 @@ jobs:
                      CODE_SIGNING_REQUIRED="NO" \
                      CODE_SIGN_ENTITLEMENTS="" \
                      CODE_SIGNING_ALLOWED="NO"
+
+  e2e_android:
+    runs-on: ubuntu-20.04
+    env:
+      SERVER_URL: http://web:4242
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: actions/checkout@v2
+        with:
+          repository: 'stripe-samples/sample-ci'
+          path: 'sample-ci'
+          ref: 'multiple-runtimes'
+
+      - name: Build
+        run: |
+          # TODO: prebuilt one
+          cd custom-payment-flow/client/android-kotlin
+          ./gradlew build
+
+      - name: Setup dependencies
+        run: |
+          source sample-ci/helpers.sh
+          setup_dependencies
+
+      - name: Launch Appium
+        run: |
+          npm install -g appium
+          appium -v
+          appium &>/dev/null &
+
+      - name: Run tests
+        run: |
+          source sample-ci/helpers.sh
+
+          install_docker_compose_settings
+          export STRIPE_WEBHOOK_SECRET=$(retrieve_webhook_secret)
+          cat <<EOF >> .env
+          DOMAIN="$SERVER_URL"
+          PRICE=${{ secrets.TEST_PRICE }}
+          PAYMENT_METHOD_TYPES="card"
+          EOF
+
+          configure_docker_compose_for_integration custom-payment-flow node ../../client/html node:14.17
+          docker-compose up -d && wait_web_server
+          command="docker-compose exec -T runner bundle exec rspec spec/custom_payment_flow_android_spec.rb"
+          $command \
+            || $command --only-failures \
+            || $command --only-failures --format RSpec::Github::Formatter --format progress
+
+      - name: Collect debug information
+        if: ${{ failure() }}
+        run: |
+          cat .env
+          cat docker-compose.yml
+          docker-compose ps -a
+          docker-compose logs web
+
+          docker cp $(docker-compose ps -qa runner | head -1):/work/tmp .
