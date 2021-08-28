@@ -216,11 +216,8 @@ jobs:
           source sample-ci/helpers.sh
           setup_dependencies
 
-      - name: Launch Appium
-        run: |
           npm install -g appium
           appium -v
-          appium &>/dev/null &
 
       - name: Run tests
         run: |
@@ -238,6 +235,8 @@ jobs:
           configure_docker_compose_for_integration custom-payment-flow node ../../client/html node:14.17
           # TODO: FIXME
           docker-compose up -d && docker-compose exec -T runner bash -c 'curl -I --retry 30 --retry-delay 3 --retry-connrefused http://web:4242'
+
+          appium &
           command="docker-compose exec -T runner bundle exec rspec spec/custom_payment_flow_android_spec.rb"
           $command \
             || $command --only-failures \
