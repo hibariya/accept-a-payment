@@ -209,7 +209,7 @@ jobs:
         run: |
           # TODO: prebuilt one
           cd custom-payment-flow/client/android-kotlin
-          ./gradlew build
+          ./gradlew installDebug
 
       - name: Setup dependencies
         run: |
