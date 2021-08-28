@@ -210,6 +210,7 @@ jobs:
           # TODO: prebuilt one
           cd custom-payment-flow/client/android-kotlin
           ./gradlew assembleDebug
+          pwd
           ls -lh app/
           ls -lh app/build/
           ls -lh app/build/outputs/
