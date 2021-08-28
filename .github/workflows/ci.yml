@@ -216,12 +216,18 @@ jobs:
           source sample-ci/helpers.sh
           setup_dependencies
 
+      - name: Launch Appium
+        run: |
           npm install -g appium
           appium -v
+          appium &>/dev/null &
 
       - name: Run tests
         run: |
           source sample-ci/helpers.sh
+
+          echo 'host address'
+          docker network inspect accept-a-card-payment_default | jq -r '.[0].IPAM.Config.[0].Gateway'
 
           install_docker_compose_settings
           export STRIPE_WEBHOOK_SECRET=$(retrieve_webhook_secret)
@@ -229,14 +235,12 @@ jobs:
           DOMAIN="$SERVER_URL"
           PRICE=${{ secrets.TEST_PRICE }}
           PAYMENT_METHOD_TYPES="card"
-          APPUIM_SERVER_URL="http://localhost:4723/wd/hub"
+          APPUIM_SERVER_URL="http://$(docker network inspect accept-a-card-payment_default | jq -r '.[0].IPAM.Config.[0].Gateway'):4723/wd/hub"
           EOF
 
           configure_docker_compose_for_integration custom-payment-flow node ../../client/html node:14.17
           # TODO: FIXME
           docker-compose up -d && docker-compose exec -T runner bash -c 'curl -I --retry 30 --retry-delay 3 --retry-connrefused http://web:4242'
-
-          appium &
           command="docker-compose exec -T runner bundle exec rspec spec/custom_payment_flow_android_spec.rb"
           $command \
             || $command --only-failures \
