@@ -226,11 +226,12 @@ jobs:
         run: |
           source sample-ci/helpers.sh
 
-          echo 'host address'
-          docker network inspect accept-a-card-payment_default | jq -r '.[0].IPAM.Config[0].Gateway'
-
           install_docker_compose_settings
           export STRIPE_WEBHOOK_SECRET=$(retrieve_webhook_secret)
+          echo 'host address'
+          docker network ls
+          docker network inspect accept-a-card-payment_default
+          docker network inspect accept-a-card-payment_default | jq -r '.[0].IPAM.Config[0].Gateway'
           cat <<EOF >> .env
           DOMAIN="$SERVER_URL"
           PRICE=${{ secrets.TEST_PRICE }}
