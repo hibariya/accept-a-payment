@@ -116,13 +116,14 @@ RSpec.configure do |config|
           platformVersion: ENV['ANDROID_PLATFORM_VERSION'] || '8.1.0',
           appActivity: '.LauncherActivity',
           deviceName: 'Android',
-          app: '/work/custom-payment-flow/client/android-kotlin/app/build/outputs/apk/debug/app-debug.apk',
+          # TODO: who reads this?
+          app: 'custom-payment-flow/client/android-kotlin/app/build/outputs/apk/debug/app-debug.apk',
           automationName: 'UIAutomator2',
           unicodeKeyboard: false,
           resetKeyboard: false
         },
         appium_lib: {
-          server_url: 'http://android-container:4723/wd/hub',
+          server_url: ENV.fetch('APPUIM_SERVER_URL', 'http://android-container:4723/wd/hub'),
           wait: 15
         }
       },
