@@ -236,7 +236,7 @@ jobs:
           EOF
 
           configure_docker_compose_for_integration custom-payment-flow node ../../client/html node:14.17
-          docker-compose up -d && wait_web_server
+          docker-compose up -d && SERVER_URL=http://web:4242 wait_web_server
           command="docker-compose exec -T runner bundle exec rspec spec/custom_payment_flow_android_spec.rb"
           $command \
             || $command --only-failures \
