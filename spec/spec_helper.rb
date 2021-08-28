@@ -123,7 +123,8 @@ RSpec.configure do |config|
           resetKeyboard: false
         },
         appium_lib: {
-          server_url: ENV.fetch('APPUIM_SERVER_URL', 'http://android-container:4723/wd/hub'),
+          # TODO: is it mandatory?
+          # server_url: ENV.fetch('APPUIM_SERVER_URL', 'http://android-container:4723/wd/hub'),
           wait: 15
         }
       },
