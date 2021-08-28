@@ -210,6 +210,11 @@ jobs:
           # TODO: prebuilt one
           cd custom-payment-flow/client/android-kotlin
           ./gradlew assembleDebug
+          ls -lh app/
+          ls -lh app/build/
+          ls -lh app/build/outputs/
+          ls -lh app/build/outputs/apk/
+          ls -lh app/build/outputs/apk/debug/
 
       - name: Setup dependencies
         run: |
@@ -228,10 +233,6 @@ jobs:
 
           install_docker_compose_settings
           export STRIPE_WEBHOOK_SECRET=$(retrieve_webhook_secret)
-          echo 'host address'
-          docker network ls
-          docker network inspect accept-a-payment_default
-          docker network inspect accept-a-payment_default | jq -r '.[0].IPAM.Config[0].Gateway'
           cat <<EOF >> .env
           DOMAIN="$SERVER_URL"
           PRICE=${{ secrets.TEST_PRICE }}
