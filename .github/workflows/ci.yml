@@ -20,36 +20,3 @@ jobs:
           repository: 'stripe-samples/sample-ci'
           path: 'sample-ci'
           ref: 'multiple-runtimes'
-
-      - name: Build
-        run: |
-          # TODO: prebuilt one
-          cd custom-payment-flow/client/android-kotlin
-          ./gradlew assembleDebug
-
-      - name: Setup dependencies
-        run: |
-          source sample-ci/helpers.sh
-          setup_dependencies
-
-      - name: Launch Appium
-        run: |
-          npm install -g appium
-          appium -v
-          appium &>/dev/null &
-
-      - name: Run tests
-        uses: reactivecircus/android-emulator-runner@v2
-        with:
-          api-level: 27
-          script: .github/workflows/android_e2e.sh
-
-      - name: Collect debug information
-        if: ${{ failure() }}
-        run: |
-          cat .env
-          cat docker-compose.yml
-          docker-compose ps -a
-          docker-compose logs web
-
-          docker cp $(docker-compose ps -qa runner | head -1):/work/tmp .
