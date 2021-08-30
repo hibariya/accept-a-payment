@@ -23,7 +23,7 @@ jobs:
 
       - name: Docker
         run: |
-          brew install caskroom/cask/brew-cask
+          # brew install homebrew/cask
           brew cask install docker-toolbox
 
           # create the docker machine
