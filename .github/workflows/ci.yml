@@ -28,7 +28,7 @@ jobs:
           brew install docker-toolbox
 
           # create the docker machine
-          # docker-machine create --driver "virtualbox" default
+          docker-machine create --driver "virtualbox" default
 
           # start the docker machine
           # docker-machine start default
