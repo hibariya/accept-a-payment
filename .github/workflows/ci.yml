@@ -20,3 +20,19 @@ jobs:
           repository: 'stripe-samples/sample-ci'
           path: 'sample-ci'
           ref: 'multiple-runtimes'
+
+      - name: Docker
+        run: |
+          brew install caskroom/cask/brew-cask
+          brew cask install docker-toolbox
+
+          # create the docker machine
+          docker-machine create --driver "virtualbox" default
+
+          # start the docker machine
+          docker-machine start default
+
+          # this command allows the docker commands to be used in the terminal
+          eval "$(docker-machine env default)"
+
+          docker run hello-world
