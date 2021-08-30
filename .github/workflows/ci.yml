@@ -24,7 +24,8 @@ jobs:
       - name: Docker
         run: |
           # brew install homebrew/cask
-          brew cask install docker-toolbox
+          # brew cask install docker-toolbox
+          brew install docker-toolbox
 
           # create the docker machine
           docker-machine create --driver "virtualbox" default
