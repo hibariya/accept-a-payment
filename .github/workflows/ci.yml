@@ -193,7 +193,8 @@ jobs:
                      CODE_SIGNING_ALLOWED="NO"
 
   e2e_android:
-    runs-on: ubuntu-20.04
+    # runs-on: ubuntu-20.04
+    runs-on: macos-latest
     env:
       SERVER_URL: http://localhost:4242
       PRICE: ${{ secrets.TEST_PRICE }}
