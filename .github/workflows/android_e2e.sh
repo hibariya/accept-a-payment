@@ -1,5 +1,9 @@
 #!/bin/bash -xe
 
+cd custom-payment-flow/client/android-kotlin
+./gradlew installDebug
+cd -
+
 source sample-ci/helpers.sh
 
 install_docker_compose_settings
