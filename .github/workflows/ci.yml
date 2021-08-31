@@ -23,8 +23,8 @@ jobs:
 
       - name: Setup dependencies
         run: |
-          brew install jq gettext ruby go
-          brew link --force gettext
+          sudo brew install jq gettext ruby go
+          sudo brew link --force gettext
 
           npm install -g appium
           appium -v
