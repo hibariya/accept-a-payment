@@ -20,6 +20,8 @@ cd custom-payment-flow/server/go
 go run server.go &
 cd -
 
+ls -l /home/runner/work/accept-a-payment/accept-a-payment/custom-payment-flow/client/android-kotlin/app/build/outputs/apk/debug/app-debug.apk
+
 bundle install -j5
 command="bundle exec rspec spec/custom_payment_flow_android_spec.rb"
 $command \
