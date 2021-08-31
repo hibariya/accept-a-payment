@@ -13,7 +13,7 @@ cat <<EOF >> .env
 DOMAIN="$SERVER_URL"
 PRICE=${PRICE}
 PAYMENT_METHOD_TYPES="card"
-APPUIM_SERVER_URL="http://$(docker network inspect accept-a-payment_default | jq -r '.[0].IPAM.Config[0].Gateway'):4723/wd/hub"
+APPUIM_SERVER_URL="http://host.docker.internal:4723/wd/hub"
 APPIUM_APK_PATH=/home/runner/work/accept-a-payment/accept-a-payment/custom-payment-flow/client/android-kotlin/app/build/outputs/apk/debug/app-debug.apk
 EOF
 
