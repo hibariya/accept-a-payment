@@ -17,6 +17,7 @@ stripe listen --forward-to http://localhost:4242/webhook &
 
 cd custom-payment-flow/server/go
 go run server.go &
+cd -
 
 bundle install -j5
 command="bundle exec rspec spec/custom_payment_flow_android_spec.rb"
