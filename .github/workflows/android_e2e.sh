@@ -13,6 +13,8 @@ APPUIM_SERVER_URL="http://localhost:4723/wd/hub"
 APPIUM_APK_PATH=/home/runner/work/accept-a-payment/accept-a-payment/custom-payment-flow/client/android-kotlin/app/build/outputs/apk/debug/app-debug.apk
 EOF
 
+source custom-payment-flow/server/go/.env
+
 stripe listen --forward-to http://localhost:4242/webhook &
 
 cd custom-payment-flow/server/go
