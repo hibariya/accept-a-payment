@@ -9,11 +9,10 @@ cat <<EOF >> custom-payment-flow/server/go/.env
 DOMAIN="$SERVER_URL"
 PRICE=${PRICE}
 PAYMENT_METHOD_TYPES="card"
-APPUIM_SERVER_URL="http://localhost:4723/wd/hub"
-APPIUM_APK_PATH=/home/runner/work/accept-a-payment/accept-a-payment/custom-payment-flow/client/android-kotlin/app/build/outputs/apk/debug/app-debug.apk
 EOF
 
-source custom-payment-flow/server/go/.env
+export APPUIM_SERVER_URL="http://localhost:4723/wd/hub"
+export APPIUM_APK_PATH=/home/runner/work/accept-a-payment/accept-a-payment/custom-payment-flow/client/android-kotlin/app/build/outputs/apk/debug/app-debug.apk
 
 stripe listen --forward-to http://localhost:4242/webhook &
 
