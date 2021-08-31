@@ -21,19 +21,35 @@ jobs:
           path: 'sample-ci'
           ref: 'multiple-runtimes'
 
-      - name: Docker
+      - name: Set up Docker
         run: |
-          # brew install homebrew/cask
-          # brew cask install docker-toolbox
           brew install docker-toolbox
-
-          # create the docker machine
           docker-machine create --driver "virtualbox" default
-
-          # start the docker machine
           # docker-machine start default
 
-          # this command allows the docker commands to be used in the terminal
-          eval "$(docker-machine env default)"
+      - name: Setup dependencies
+        run: |
+          brew install jq gettext
+          brew link --force gettext
 
-          docker run hello-world
+          npm install -g appium
+          appium -v
+          appium &>/dev/null &
+
+      - name: Run tests
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 27
+          script: .github/workflows/android_e2e.sh
+
+      - name: Collect debug information
+        if: ${{ failure() }}
+        run: |
+          cat .env
+          cat docker-compose.yml
+
+          eval "$(docker-machine env default)"
+          docker-compose ps -a
+          docker-compose logs web
+
+          docker cp $(docker-compose ps -qa runner | head -1):/work/tmp .

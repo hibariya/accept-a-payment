@@ -4,6 +4,7 @@ cd custom-payment-flow/client/android-kotlin
 ./gradlew installDebug
 cd -
 
+eval "$(docker-machine env default)"
 source sample-ci/helpers.sh
 
 install_docker_compose_settings
@@ -19,9 +20,6 @@ EOF
 configure_docker_compose_for_integration custom-payment-flow node ../../client/html node:14.17
 # TODO: FIXME
 docker-compose up -d && docker-compose exec -T runner bash -c 'curl -I --retry 30 --retry-delay 3 --retry-connrefused http://web:4242'
-pwd # TODO: remove
-ls -l $APPIUM_APK_PATH
-ls -l $(dirname $APPIUM_APK_PATH)
 command="docker-compose exec -T runner bundle exec rspec spec/custom_payment_flow_android_spec.rb"
 $command \
   || $command --only-failures \
