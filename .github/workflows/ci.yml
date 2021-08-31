@@ -21,34 +21,20 @@ jobs:
           path: 'sample-ci'
           ref: 'multiple-runtimes'
 
-      - name: Set up Docker
-        run: |
-          brew install docker docker-compose docker-machine virtualbox
-          docker-machine create --driver virtualbox default
-
       - name: Setup dependencies
         run: |
-          brew install jq gettext
+          brew install jq gettext ruby go
           brew link --force gettext
 
           npm install -g appium
           appium -v
           appium &>/dev/null &
 
+          curl -o- -L https://github.com/stripe/stripe-cli/releases/download/v1.7.0/stripe_1.7.0_mac-os_x86_64.tar.gz | tar fxz -
+          mv stripe /usr/local/bin/stripe
+
       - name: Run tests
         uses: reactivecircus/android-emulator-runner@v2
         with:
           api-level: 27
           script: .github/workflows/android_e2e.sh
-
-      - name: Collect debug information
-        if: ${{ failure() }}
-        run: |
-          cat .env
-          cat docker-compose.yml
-
-          eval "$(docker-machine env default)"
-          docker-compose ps -a
-          docker-compose logs web
-
-          docker cp $(docker-compose ps -qa runner | head -1):/work/tmp .
