@@ -20,9 +20,9 @@ export APPIUM_APK_PATH=/Users/runner/work/accept-a-payment/accept-a-payment/cust
 cd custom-payment-flow/server/go
 go run server.go &
 cd -
-sleep 10
 
-#bundle install -j5
+bundle install -j5
+sleep 10
 #mkdir -p tmp
 #command="bundle exec rspec spec/custom_payment_flow_android_spec.rb"
 #$command \
