@@ -29,5 +29,5 @@ $command \
   || $command --only-failures --format RSpec::Github::Formatter --format progress
 
 status=$?
-kill $(jobs -p)
+kill -9 $(jobs -p)
 exit $status
