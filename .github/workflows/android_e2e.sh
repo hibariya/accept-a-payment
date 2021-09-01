@@ -21,6 +21,7 @@ go run server.go &
 cd -
 
 bundle install -j5
+mkdir -p tmp
 command="bundle exec rspec spec/custom_payment_flow_android_spec.rb"
 $command \
   || $command --only-failures \

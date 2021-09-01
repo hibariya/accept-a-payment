@@ -36,3 +36,11 @@ jobs:
         with:
           api-level: 27
           script: .github/workflows/android_e2e.sh
+
+      - name: Upload capybara screenshots
+        if: ${{ always() }}
+        uses: actions/upload-artifact@v2
+        with:
+          name: screenshots
+          path: |
+            tmp/
