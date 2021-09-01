@@ -21,8 +21,6 @@ cd custom-payment-flow/server/go
 go run server.go &
 cd -
 
-bundle install -j5
-sleep 10
 #mkdir -p tmp
 #command="bundle exec rspec spec/custom_payment_flow_android_spec.rb"
 #$command \
