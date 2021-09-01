@@ -1,9 +1,5 @@
 #!/bin/bash -xe
 
-cd custom-payment-flow/client/android-kotlin
-./gradlew installDebug
-cd -
-
 export STRIPE_WEBHOOK_SECRET=$(stripe listen --api-key $STRIPE_SECRET_KEY --print-secret)
 cat <<EOF >> custom-payment-flow/server/go/.env
 DOMAIN="$SERVER_URL"
@@ -18,6 +14,10 @@ stripe listen --forward-to http://localhost:4242/webhook &
 
 cd custom-payment-flow/server/go
 go run server.go &
+cd -
+
+cd custom-payment-flow/client/android-kotlin
+./gradlew installDebug
 cd -
 
 bundle install -j5
