@@ -1,6 +1,6 @@
 #!/bin/bash -xe
 
-appium &
+appium &>/dev/null &
 stripe listen --forward-to http://localhost:4242/webhook &
 
 export STRIPE_WEBHOOK_SECRET=$(stripe listen --api-key $STRIPE_SECRET_KEY --print-secret)
@@ -29,5 +29,7 @@ $command \
   || $command --only-failures --format RSpec::Github::Formatter --format progress
 
 status=$?
-kill -9 $(jobs -p)
+kill $(jobs -p)
 exit $status
+
+# TODO: try the newer API level
