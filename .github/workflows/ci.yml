@@ -4,6 +4,7 @@ on: [push, pull_request]
 env:
   STRIPE_PUBLISHABLE_KEY: ${{ secrets.TEST_STRIPE_PUBLISHABLE_KEY }}
   STRIPE_SECRET_KEY: ${{ secrets.TEST_STRIPE_SECRET_KEY }}
+  STRIPE_API_KEY: ${{ secrets.TEST_STRIPE_SECRET_KEY }}
 
 jobs:
   e2e_android:

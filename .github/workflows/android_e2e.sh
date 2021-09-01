@@ -4,8 +4,6 @@ cd custom-payment-flow/client/android-kotlin
 ./gradlew installDebug
 cd -
 
-stripe login
-
 export STRIPE_WEBHOOK_SECRET=$(stripe listen --api-key $STRIPE_SECRET_KEY --print-secret)
 cat <<EOF >> custom-payment-flow/server/go/.env
 DOMAIN="$SERVER_URL"
