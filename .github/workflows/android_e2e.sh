@@ -17,10 +17,10 @@ cd custom-payment-flow/server/go
 go run server.go &
 cd -
 
-#cd custom-payment-flow/client/android-kotlin
-#./gradlew installDebug
-#cd -
-#
+cd custom-payment-flow/client/android-kotlin
+./gradlew installDebug
+cd -
+
 #bundle install -j5
 #mkdir -p tmp
 #command="bundle exec rspec spec/custom_payment_flow_android_spec.rb"
