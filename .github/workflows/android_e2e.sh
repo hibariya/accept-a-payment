@@ -6,7 +6,6 @@ cd -
 
 appium &>/dev/null &
 stripe listen --forward-to http://localhost:4242/webhook &
-sleep 10
 
 export STRIPE_WEBHOOK_SECRET=$(stripe listen --api-key $STRIPE_SECRET_KEY --print-secret)
 cat <<EOF >> custom-payment-flow/server/go/.env
@@ -24,10 +23,10 @@ cd -
 
 bundle install -j5
 mkdir -p tmp
-command="bundle exec rspec spec/custom_payment_flow_android_spec.rb"
-$command \
-  || $command --only-failures \
-  || $command --only-failures --format RSpec::Github::Formatter --format progress
+#command="bundle exec rspec spec/custom_payment_flow_android_spec.rb"
+#$command \
+#  || $command --only-failures \
+#  || $command --only-failures --format RSpec::Github::Formatter --format progress
 
 status=$?
 kill $(jobs -p)
