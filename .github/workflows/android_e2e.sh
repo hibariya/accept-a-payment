@@ -20,6 +20,11 @@ cd custom-payment-flow/server/go
 go run server.go &
 cd -
 
+pwd
+ls -l /home/runner/work/accept-a-payment/accept-a-payment/custom-payment-flow/client/android-kotlin/app/build
+ls -l /home/runner/work/accept-a-payment/accept-a-payment/custom-payment-flow/client/android-kotlin/app/build/outputs
+ls -l /home/runner/work/accept-a-payment/accept-a-payment/custom-payment-flow/client/android-kotlin/app/build/outputs/apk
+ls -l /home/runner/work/accept-a-payment/accept-a-payment/custom-payment-flow/client/android-kotlin/app/build/outputs/apk/debug
 ls -l /home/runner/work/accept-a-payment/accept-a-payment/custom-payment-flow/client/android-kotlin/app/build/outputs/apk/debug/app-debug.apk
 
 bundle install -j5
