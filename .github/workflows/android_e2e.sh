@@ -22,12 +22,12 @@ cd custom-payment-flow/server/go
 go run server.go &
 cd -
 
-#bundle install -j5
-#mkdir -p tmp
-#command="bundle exec rspec spec/custom_payment_flow_android_spec.rb"
-#$command \
-#  || $command --only-failures \
-#  || $command --only-failures --format RSpec::Github::Formatter --format progress
+bundle install -j5
+mkdir -p tmp
+command="bundle exec rspec spec/custom_payment_flow_android_spec.rb"
+$command \
+  || $command --only-failures \
+  || $command --only-failures --format RSpec::Github::Formatter --format progress
 
 status=$?
 kill $(jobs -p)
