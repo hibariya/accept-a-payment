@@ -8,19 +8,19 @@ appium &>/dev/null &
 stripe listen --forward-to http://localhost:4242/webhook &
 sleep 10
 
-#export STRIPE_WEBHOOK_SECRET=$(stripe listen --api-key $STRIPE_SECRET_KEY --print-secret)
-#cat <<EOF >> custom-payment-flow/server/go/.env
-#DOMAIN="$SERVER_URL"
-#PRICE=${PRICE}
-#PAYMENT_METHOD_TYPES="card"
-#EOF
+export STRIPE_WEBHOOK_SECRET=$(stripe listen --api-key $STRIPE_SECRET_KEY --print-secret)
+cat <<EOF >> custom-payment-flow/server/go/.env
+DOMAIN="$SERVER_URL"
+PRICE=${PRICE}
+PAYMENT_METHOD_TYPES="card"
+EOF
 
-#export APPUIM_SERVER_URL="http://localhost:4723/wd/hub"
-#export APPIUM_APK_PATH=/Users/runner/work/accept-a-payment/accept-a-payment/custom-payment-flow/client/android-kotlin/app/build/outputs/apk/debug/app-debug.apk
-#
-#cd custom-payment-flow/server/go
-#go run server.go &
-#cd -
+export APPUIM_SERVER_URL="http://localhost:4723/wd/hub"
+export APPIUM_APK_PATH=/Users/runner/work/accept-a-payment/accept-a-payment/custom-payment-flow/client/android-kotlin/app/build/outputs/apk/debug/app-debug.apk
+
+cd custom-payment-flow/server/go
+go run server.go &
+cd -
 
 #bundle install -j5
 #mkdir -p tmp
