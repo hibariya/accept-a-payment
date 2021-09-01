@@ -5,8 +5,9 @@ cd custom-payment-flow/client/android-kotlin
 cd -
 
 appium &>/dev/null &
-#stripe listen --forward-to http://localhost:4242/webhook &
-#
+stripe listen --forward-to http://localhost:4242/webhook &
+sleep 10
+
 #export STRIPE_WEBHOOK_SECRET=$(stripe listen --api-key $STRIPE_SECRET_KEY --print-secret)
 #cat <<EOF >> custom-payment-flow/server/go/.env
 #DOMAIN="$SERVER_URL"
