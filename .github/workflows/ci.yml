@@ -33,6 +33,7 @@ jobs:
           bundle install -j5
 
       - name: Run tests
+        timeout-minutes: 10
         uses: reactivecircus/android-emulator-runner@v2
         with:
           api-level: 29
