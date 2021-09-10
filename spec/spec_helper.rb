@@ -110,7 +110,6 @@ RSpec.configure do |config|
 =end
 
   config.before type: :appium_android do
-    exit
     @driver = Appium::Driver.new({
         caps: {
           platformName: 'Android',
@@ -132,6 +131,7 @@ RSpec.configure do |config|
 
     Appium.promote_appium_methods [self.singleton_class], @driver
     @driver.start_driver
+    exit
   end
 
   config.after type: :appium_android do
