@@ -110,6 +110,7 @@ RSpec.configure do |config|
 =end
 
   config.before type: :appium_android do
+    exit
     @driver = Appium::Driver.new({
         caps: {
           platformName: 'Android',
