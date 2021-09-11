@@ -31,6 +31,11 @@ jobs:
           source sample-ci/helpers.sh
           setup_dependencies
 
+      - name: aoeu
+        run: |
+          sudo apt install cpu-checker
+          kvm-ok
+
       - name: Run tests
         run: |
           source sample-ci/helpers.sh
