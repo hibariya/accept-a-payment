@@ -34,7 +34,7 @@ jobs:
       - name: aoeu
         run: |
           sudo apt install cpu-checker
-          kvm-ok
+          sudo kvm-ok
 
       - name: Run tests
         run: |
