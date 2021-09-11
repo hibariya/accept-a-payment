@@ -1,7 +1,8 @@
 #!/bin/bash -xe
 
 cd custom-payment-flow/client/android-kotlin
-./gradlew installDebug
+#./gradlew installDebug
+./gradlew assembleDebug
 cd -
 
 appium &>/dev/null &
@@ -21,16 +22,16 @@ cd custom-payment-flow/server/go
 go run server.go &
 cd -
 
-#mkdir -p tmp
-#command="bundle exec rspec spec/custom_payment_flow_android_spec.rb"
-#$command \
-#  || $command --only-failures \
-#  || $command --only-failures --format RSpec::Github::Formatter --format progress
+mkdir -p tmp
+command="bundle exec rspec spec/custom_payment_flow_android_spec.rb"
+$command \
+  || $command --only-failures \
+  || $command --only-failures --format RSpec::Github::Formatter --format progress
 
-sleep 10
-adb shell am start -n com.example.app/com.example.app.LauncherActivity
+#sleep 10
+#adb shell am start -n com.example.app/com.example.app.LauncherActivity
 #adb shell am start -a android.intent.action.VIEW -d https://www.stackoverflow.com
-sleep 5
+#sleep 5
 
 status=$?
 kill $(jobs -p)
