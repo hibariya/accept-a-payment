@@ -27,6 +27,12 @@ $command \
   || $command --only-failures \
   || $command --only-failures --format RSpec::Github::Formatter --format progress
 
+
 status=$?
 kill $(jobs -p)
+
+adb -s emulator-5554 emu kill
+sleep 30
+ps -eF
+
 exit $status
