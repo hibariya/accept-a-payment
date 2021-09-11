@@ -33,7 +33,7 @@ $command \
 #adb shell am start -a android.intent.action.VIEW -d https://www.stackoverflow.com
 #sleep 5
 
+pkill qemu
 status=$?
 kill $(jobs -p)
 exit $status
-pkill qemu
