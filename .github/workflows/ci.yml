@@ -8,7 +8,8 @@ env:
 
 jobs:
   e2e_android:
-    runs-on: ubuntu-20.04
+    # runs-on: ubuntu-20.04
+    runs-on: macos-latest
     env:
       SERVER_URL: http://10.0.2.2:4242
       PRICE: ${{ secrets.TEST_PRICE }}
@@ -21,15 +22,15 @@ jobs:
           path: 'sample-ci'
           ref: 'multiple-runtimes'
 
-      - name: Setup dependencies
-        run: |
-          npm install -g appium
-          appium -v
+      #- name: Setup dependencies
+      #  run: |
+      #    npm install -g appium
+      #    appium -v
 
-          curl -o- -L https://github.com/stripe/stripe-cli/releases/download/v1.7.0/stripe_1.7.0_mac-os_x86_64.tar.gz | tar fxz -
-          sudo mv stripe /usr/local/bin/stripe
+      #    curl -o- -L https://github.com/stripe/stripe-cli/releases/download/v1.7.0/stripe_1.7.0_mac-os_x86_64.tar.gz | tar fxz -
+      #    sudo mv stripe /usr/local/bin/stripe
 
-          bundle install -j5
+      #    bundle install -j5
 
       - name: Run tests
         timeout-minutes: 10
