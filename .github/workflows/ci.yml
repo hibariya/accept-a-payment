@@ -43,7 +43,7 @@ jobs:
           PAYMENT_METHOD_TYPES="card"
           EOF
 
-          configure_docker_compose_for_integration "${{ matrix.target.sample }}" node ../../client/${{ matrix.implementation.client_type }} node:14.17
+          configure_docker_compose_for_integration custom-payment-flow node ../../client/${{ matrix.implementation.client_type }} node:14.17
           docker-compose up -d && wait_web_server
           command="docker-compose exec -T runner bundle exec rspec spec/custom_payment_flow_android_spec.rb"
           $command \
