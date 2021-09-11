@@ -14,4 +14,6 @@ gem 'selenium-webdriver'
 gem 'capybara'
 gem 'capybara-screenshot'
 
+gem 'appium_lib'
+
 gem 'rspec-github', require: false
