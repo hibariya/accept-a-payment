@@ -115,7 +115,7 @@ RSpec.configure do |config|
           platformName: 'Android',
           platformVersion: ENV['ANDROID_PLATFORM_VERSION'] || '10',
           appActivity: '.LauncherActivity',
-          deviceName: 'Android',
+          deviceName: 'test',
           app: ENV.fetch('APPIUM_APK_PATH', '/work/custom-payment-flow/client/android-kotlin/app/build/outputs/apk/debug/app-debug.apk'),
           automationName: 'UIAutomator2',
           unicodeKeyboard: false,
