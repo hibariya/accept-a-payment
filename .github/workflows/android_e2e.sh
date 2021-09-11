@@ -27,16 +27,6 @@ $command \
   || $command --only-failures \
   || $command --only-failures --format RSpec::Github::Formatter --format progress
 
-echo adb devices
-adb devices
-echo adb devices -l
-adb devices -l
-echo aoeu
-adb shell am force-stop com.stripe.android.testapp || true
-echo adb -s emulator-5554 emu kill
-adb kill-server
-adb -s emulator-5554 emu kill
-
 status=$?
 kill $(jobs -p)
 exit $status
