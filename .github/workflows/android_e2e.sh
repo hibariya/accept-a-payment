@@ -31,8 +31,9 @@ $command \
 status=$?
 kill $(jobs -p)
 
+cat ~/.android/avd/test.avd/config.ini
 adb -s emulator-5554 emu kill
 sleep 30
-ps -eF
+ps -ef
 
 exit $status
