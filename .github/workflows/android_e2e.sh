@@ -28,6 +28,8 @@ cd -
 #  || $command --only-failures --format RSpec::Github::Formatter --format progress
 adb shell am start -n com.example.app/com.example.app.LauncherActivity
 sleep 30
+adb shell input keyevent KEYCODE_BACK
+sleep 5
 adb shell am force-stop com.example.app
 
 
