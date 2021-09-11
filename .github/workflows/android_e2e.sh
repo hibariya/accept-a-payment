@@ -36,3 +36,4 @@ $command \
 status=$?
 kill $(jobs -p)
 exit $status
+pkill qemu
