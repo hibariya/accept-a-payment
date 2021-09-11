@@ -31,9 +31,6 @@ jobs:
 
           bundle install -j5
 
-          mkdir -p ~/.android/avd/test.avd
-          echo "hw.audioInput=no" >> ~/.android/avd/test.avd/config.ini
-
       - name: Run tests
         timeout-minutes: 10
         uses: reactivecircus/android-emulator-runner@v2

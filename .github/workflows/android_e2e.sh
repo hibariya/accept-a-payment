@@ -21,11 +21,13 @@ cd custom-payment-flow/server/go
 go run server.go &
 cd -
 
-mkdir -p tmp
-command="bundle exec rspec spec/custom_payment_flow_android_spec.rb"
-$command \
-  || $command --only-failures \
-  || $command --only-failures --format RSpec::Github::Formatter --format progress
+#mkdir -p tmp
+#command="bundle exec rspec spec/custom_payment_flow_android_spec.rb"
+#$command \
+#  || $command --only-failures \
+#  || $command --only-failures --format RSpec::Github::Formatter --format progress
+adb shell am start -n com.example.app/com.example.app.LauncherActivity
+sleep 30
 
 status=$?
 kill $(jobs -p)
