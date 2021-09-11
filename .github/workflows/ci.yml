@@ -45,6 +45,7 @@ jobs:
 
           configure_docker_compose_for_integration custom-payment-flow node ../../client/${{ matrix.implementation.client_type }} node:14.17
           docker-compose up -d && wait_web_server
+          docker-compose exec android bash -c "cd /work/custom-payment-flow/client/android-kotlin && ./gradlew installDebug"
           command="docker-compose exec -T runner bundle exec rspec spec/custom_payment_flow_android_spec.rb"
           $command \
             || $command --only-failures \
