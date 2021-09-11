@@ -31,10 +31,11 @@ echo adb devices
 adb devices
 echo adb devices -l
 adb devices -l
-echo adb -s emulator-5554 emu kill
-adb -s emulator-5554 emu kill || adb kill-server
 echo aoeu
-adb shell am force-stop com.stripe.android.testapp
+adb shell am force-stop com.stripe.android.testapp || true
+echo adb -s emulator-5554 emu kill
+adb kill-server
+adb -s emulator-5554 emu kill
 
 status=$?
 kill $(jobs -p)
