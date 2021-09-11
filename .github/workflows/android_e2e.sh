@@ -1,9 +1,9 @@
 #!/bin/bash -xe
 
-#cd custom-payment-flow/client/android-kotlin
-#./gradlew installDebug
-#cd -
-#
+cd custom-payment-flow/client/android-kotlin
+./gradlew installDebug
+cd -
+
 #appium &>/dev/null &
 #stripe listen --forward-to http://localhost:4242/webhook &
 #
