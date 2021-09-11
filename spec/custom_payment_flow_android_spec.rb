@@ -1,8 +1,7 @@
 RSpec.describe 'Custom payment flow on Android App', type: :appium_android do
   example 'Happy path' do
     begin
-      @driver.find_element(:uiautomator, 'new UiSelector().text("Card")').click
-      # text('Card').click
+      text('Card').click
 
       textfield('Card number').send_keys '4242424242424242'
       textfield('Expiration date').send_keys '1230'
@@ -18,8 +17,7 @@ RSpec.describe 'Custom payment flow on Android App', type: :appium_android do
 
   example 'CVC check fails' do
     begin
-      @driver.find_element(:uiautomator, 'new UiSelector().text("Card")').click
-      # text('Card').click
+      text('Card').click
 
       textfield('Card number').send_keys '4000000000000101'
       textfield('Expiration date').send_keys '1230'
