@@ -10,7 +10,7 @@ RSpec.describe 'Custom payment flow on Android App', type: :appium_android do
       button('Pay').click
 
       expect(wait { switch_to.alert }.text).to include('Payment succeeded')
-    ensure
+    rescue
       screenshot 'tmp/hi.png'
     end
   end
@@ -26,7 +26,7 @@ RSpec.describe 'Custom payment flow on Android App', type: :appium_android do
       button('Pay').click
 
       expect(wait { switch_to.alert }.text).to include('Error')
-    ensure
+    rescue
       screenshot 'tmp/hiya.png'
     end
   end
