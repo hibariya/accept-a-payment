@@ -131,6 +131,9 @@ RSpec.configure do |config|
 
     Appium.promote_appium_methods [self.singleton_class], @driver
     @driver.start_driver
+
+    sleep 1
+    @driver.driver_quit
     exit
   end
 
