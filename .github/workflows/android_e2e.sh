@@ -1,8 +1,8 @@
 #!/bin/bash -xe
 
 cd custom-payment-flow/client/android-kotlin
-#./gradlew installDebug
-./gradlew assembleDebug
+./gradlew installDebug
+#./gradlew assembleDebug
 cd -
 
 appium &>/dev/null &
