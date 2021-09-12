@@ -45,4 +45,12 @@ sleep 10
 kill $(jobs -p)
 #exit $status
 
+ps -ef | grep -i gradle
+
+pkill '.*GradleDaemon.*'
+pkill '*Gradle*'
+
+pkill -f '.*GradleDaemon.*'
+pkill -f '*Gradle*'
+
 sleep 10
