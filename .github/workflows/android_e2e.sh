@@ -34,3 +34,27 @@ command="bundle exec rspec spec/custom_payment_flow_android_spec.rb"
 $command \
   || $command --only-failures \
   || $command --only-failures --format RSpec::Github::Formatter --format progress
+
+#adb shell am start -n com.example.app/com.example.app.LauncherActivity
+#sleep 10
+
+#adb shell am force-stop com.example.app
+#sleep 10
+#adb uninstall com.example.app
+#sleep 10
+#adb -e reboot
+#sleep 90
+
+#adb shell am start -a android.intent.action.VIEW -d https://www.stackoverflow.com
+#sleep 5
+
+#status=$?
+kill $(jobs -p)
+#exit $status
+
+set +e
+
+ps -ef | grep -i gradle
+
+cd custom-payment-flow/client/android-kotlin
+./gradlew --stop
