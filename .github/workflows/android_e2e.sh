@@ -21,9 +21,9 @@ export APPIUM_APK_PATH=/Users/runner/work/accept-a-payment/accept-a-payment/cust
 cd custom-payment-flow/server/java
 mvn package
 java -cp target/sample-jar-with-dependencies.jar com.stripe.sample.Server &
+curl -I --retry 30 --retry-delay 3 --retry-connrefused http://localhost:4242/
 cd -
 
-sleep 10
 mkdir -p tmp
 command="bundle exec rspec spec/custom_payment_flow_android_spec.rb"
 $command \
