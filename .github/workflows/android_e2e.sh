@@ -27,13 +27,15 @@ command="bundle exec rspec spec/custom_payment_flow_android_spec.rb"
 $command \
   || $command --only-failures \
   || $command --only-failures --format RSpec::Github::Formatter --format progress
+status=$?
 
-#sleep 10
+adb shell am force-stop com.example.app || true
+sleep 10
+adb uninstall com.example.app
+sleep 10
 #adb shell am start -n com.example.app/com.example.app.LauncherActivity
 #adb shell am start -a android.intent.action.VIEW -d https://www.stackoverflow.com
 #sleep 5
 
-pkill qemu
-status=$?
 kill $(jobs -p)
 exit $status
