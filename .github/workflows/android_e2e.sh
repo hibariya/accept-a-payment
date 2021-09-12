@@ -56,3 +56,6 @@ pkill -f '*GradleDaemon*'
 pkill -f '*Gradle*'
 
 sleep 10
+
+ps -ef | grep -i java
+ps -ef | grep -i server
