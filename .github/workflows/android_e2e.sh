@@ -5,7 +5,7 @@ cd custom-payment-flow/client/android-kotlin
 #./gradlew assembleDebug
 cd -
 
-appium &>/dev/null &
+#appium &>/dev/null &
 stripe listen --forward-to http://localhost:4242/webhook &
 
 export STRIPE_WEBHOOK_SECRET=$(stripe listen --api-key $STRIPE_SECRET_KEY --print-secret)
@@ -31,16 +31,16 @@ cd -
 sleep 10
 adb shell am start -n com.example.app/com.example.app.LauncherActivity
 sleep 10
-adb shell am force-stop com.example.app
-sleep 10
-adb uninstall com.example.app
-sleep 10
-adb -e reboot
-sleep 90
+#adb shell am force-stop com.example.app
+#sleep 10
+#adb uninstall com.example.app
+#sleep 10
+#adb -e reboot
+#sleep 90
 
 #adb shell am start -a android.intent.action.VIEW -d https://www.stackoverflow.com
 #sleep 5
 
 #status=$?
-kill $(jobs -p)
+#kill $(jobs -p)
 #exit $status

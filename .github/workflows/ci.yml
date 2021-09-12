@@ -24,16 +24,16 @@ jobs:
 
       - name: Setup dependencies
         run: |
-          npm install -g appium
-          appium -v
+          #npm install -g appium
+          #appium -v
 
           curl -o- -L https://github.com/stripe/stripe-cli/releases/download/v1.7.0/stripe_1.7.0_mac-os_x86_64.tar.gz | tar fxz -
           sudo mv stripe /usr/local/bin/stripe
 
-          bundle install -j5
+          #bundle install -j5
 
       - name: Run tests
-        timeout-minutes: 20
+        timeout-minutes: 10
         uses: reactivecircus/android-emulator-runner@v2
         with:
           api-level: 29
