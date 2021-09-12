@@ -52,9 +52,9 @@ $command \
 kill $(jobs -p)
 #exit $status
 
-set +e
-
-ps -ef | grep -i gradle
-
-cd custom-payment-flow/client/android-kotlin
-./gradlew --stop
+#set +e
+#
+#ps -ef | grep -i gradle
+#
+#cd custom-payment-flow/client/android-kotlin
+#./gradlew --stop
