@@ -49,6 +49,7 @@ set +e
 
 ps -ef | grep -i gradle
 
+cd custom-payment-flow/client/android-kotlin
 ./gradlew --stop
 
 sleep 10
