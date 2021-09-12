@@ -21,6 +21,10 @@ export APPIUM_APK_PATH=/Users/runner/work/accept-a-payment/accept-a-payment/cust
 #cd custom-payment-flow/server/go
 #go run server.go &
 #cd -
+cd custom-payment-flow/server/java
+mvn package
+java -cp target/sample-jar-with-dependencies.jar com.stripe.sample.Server &
+cd -
 
 #mkdir -p tmp
 #command="bundle exec rspec spec/custom_payment_flow_android_spec.rb"
