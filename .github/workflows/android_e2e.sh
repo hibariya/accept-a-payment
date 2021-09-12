@@ -14,6 +14,7 @@ cat <<EOF >> custom-payment-flow/server/java/.env
 DOMAIN="$SERVER_URL"
 PRICE=${PRICE}
 PAYMENT_METHOD_TYPES="card"
+STATIC_DIR="../../client/html"
 EOF
 
 export APPUIM_SERVER_URL="http://localhost:4723/wd/hub"
