@@ -8,11 +8,7 @@ env:
 
 jobs:
   e2e_android:
-    # runs-on: ubuntu-20.04
     runs-on: macos-latest
-    env:
-      SERVER_URL: http://10.0.2.2:4242
-      PRICE: ${{ secrets.TEST_PRICE }}
     steps:
       - uses: actions/checkout@v2
 

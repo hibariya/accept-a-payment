@@ -1,8 +1,8 @@
 #!/bin/bash -xe
 
 cat <<EOF >> custom-payment-flow/server/java/.env
-DOMAIN="$SERVER_URL"
-PRICE=${PRICE}
+DOMAIN="http://10.0.2.2:4242"
+PRICE=${{ secrets.TEST_PRICE }}
 PAYMENT_METHOD_TYPES="card"
 STATIC_DIR="../../client/html"
 EOF
@@ -31,6 +31,6 @@ $command \
   || $command --only-failures \
   || $command --only-failures --format RSpec::Github::Formatter --format progress
 
-$status=$?
+status=$?
 kill $(jobs -p)
 exit $status
