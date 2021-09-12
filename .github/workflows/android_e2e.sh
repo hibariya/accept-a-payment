@@ -49,13 +49,18 @@ set +e
 
 ps -ef | grep -i gradle
 
-pkill '*GradleDaemon*'
-pkill '*Gradle*'
+./gradlew --stop
 
-pkill -f '*GradleDaemon*'
-pkill -f '*Gradle*'
+sleep 10
+
+pkill 'GradleDaemon'
+pkill 'gradle'
+
+sleep 10
+
+pkill -f 'GradleDaemon'
+pkill -f 'gradle'
 
 sleep 10
 
 ps -ef | grep -i java
-ps -ef | grep -i server
