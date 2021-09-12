@@ -42,5 +42,7 @@ sleep 10
 #sleep 5
 
 #status=$?
-#kill $(jobs -p)
+kill $(jobs -p)
 #exit $status
+
+sleep 10
