@@ -28,15 +28,16 @@ mvn package
 java -cp target/sample-jar-with-dependencies.jar com.stripe.sample.Server &
 cd -
 
-#mkdir -p tmp
-#command="bundle exec rspec spec/custom_payment_flow_android_spec.rb"
-#$command \
-#  || $command --only-failures \
-#  || $command --only-failures --format RSpec::Github::Formatter --format progress
+sleep 10
+mkdir -p tmp
+command="bundle exec rspec spec/custom_payment_flow_android_spec.rb"
+$command \
+  || $command --only-failures \
+  || $command --only-failures --format RSpec::Github::Formatter --format progress
 
-sleep 10
-adb shell am start -n com.example.app/com.example.app.LauncherActivity
-sleep 10
+#adb shell am start -n com.example.app/com.example.app.LauncherActivity
+#sleep 10
+
 #adb shell am force-stop com.example.app
 #sleep 10
 #adb uninstall com.example.app

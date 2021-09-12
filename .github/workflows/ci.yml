@@ -30,7 +30,7 @@ jobs:
           curl -o- -L https://github.com/stripe/stripe-cli/releases/download/v1.7.0/stripe_1.7.0_mac-os_x86_64.tar.gz | tar fxz -
           sudo mv stripe /usr/local/bin/stripe
 
-          #bundle install -j5
+          bundle install -j5
 
       - name: Run tests
         timeout-minutes: 10
