@@ -9,6 +9,8 @@ env:
 jobs:
   e2e_android:
     runs-on: macos-latest
+    env:
+      PRICE: ${{ secrets.TEST_PRICE }}
     steps:
       - uses: actions/checkout@v2
 

@@ -2,7 +2,7 @@
 
 cat <<EOF >> custom-payment-flow/server/java/.env
 DOMAIN="http://10.0.2.2:4242"
-PRICE=${{ secrets.TEST_PRICE }}
+PRICE="$PRICE"
 PAYMENT_METHOD_TYPES="card"
 STATIC_DIR="../../client/html"
 EOF
