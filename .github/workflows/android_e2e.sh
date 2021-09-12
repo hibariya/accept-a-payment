@@ -18,9 +18,9 @@ EOF
 export APPUIM_SERVER_URL="http://localhost:4723/wd/hub"
 export APPIUM_APK_PATH=/Users/runner/work/accept-a-payment/accept-a-payment/custom-payment-flow/client/android-kotlin/app/build/outputs/apk/debug/app-debug.apk
 
-#cd custom-payment-flow/server/go
-#go run server.go &
-#cd -
+cd custom-payment-flow/server/go
+go run server.go &
+cd -
 
 #mkdir -p tmp
 #command="bundle exec rspec spec/custom_payment_flow_android_spec.rb"
