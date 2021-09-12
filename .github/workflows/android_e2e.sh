@@ -35,6 +35,9 @@ adb shell am force-stop com.example.app
 sleep 10
 adb uninstall com.example.app
 sleep 10
+adb -e reboot
+sleep 90
+
 #adb shell am start -a android.intent.action.VIEW -d https://www.stackoverflow.com
 #sleep 5
 
