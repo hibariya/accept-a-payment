@@ -29,8 +29,8 @@ cd -
 #  || $command --only-failures --format RSpec::Github::Formatter --format progress
 
 sleep 10
-adb shell am start -n com.example.app/com.example.app.LauncherActivity
-sleep 10
+#adb shell am start -n com.example.app/com.example.app.LauncherActivity
+#sleep 10
 #adb shell am force-stop com.example.app
 #sleep 10
 #adb uninstall com.example.app
