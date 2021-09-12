@@ -9,7 +9,8 @@ cd -
 stripe listen --forward-to http://localhost:4242/webhook &
 
 export STRIPE_WEBHOOK_SECRET=$(stripe listen --api-key $STRIPE_SECRET_KEY --print-secret)
-cat <<EOF >> custom-payment-flow/server/go/.env
+#cat <<EOF >> custom-payment-flow/server/go/.env
+cat <<EOF >> custom-payment-flow/server/java/.env
 DOMAIN="$SERVER_URL"
 PRICE=${PRICE}
 PAYMENT_METHOD_TYPES="card"
