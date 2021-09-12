@@ -36,7 +36,7 @@ jobs:
         timeout-minutes: 10
         uses: reactivecircus/android-emulator-runner@v2
         with:
-          api-level: 26
+          api-level: 25
           profile: "Nexus 6"
           disable-spellchecker: true
           script: .github/workflows/android_e2e.sh
