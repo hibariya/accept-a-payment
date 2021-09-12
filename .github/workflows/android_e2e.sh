@@ -5,7 +5,7 @@ cd custom-payment-flow/client/android-kotlin
 #./gradlew assembleDebug
 cd -
 
-#appium &>/dev/null &
+appium &>/dev/null &
 stripe listen --forward-to http://localhost:4242/webhook &
 
 export STRIPE_WEBHOOK_SECRET=$(stripe listen --api-key $STRIPE_SECRET_KEY --print-secret)
