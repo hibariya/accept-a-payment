@@ -28,7 +28,8 @@ class AlipayActivityTest {
     val idlingResourceRule: IdlingResourceRule = IdlingResourceRule("AlipayActivity")
 
     @Before
-    fun launchCard() {
+    fun launchAlipay() {
+        Thread.sleep(5000)
         onView(withText("Alipay")).perform(click())
         onView(withText("Alipay Activity")).check(matches(isDisplayed()))
     }

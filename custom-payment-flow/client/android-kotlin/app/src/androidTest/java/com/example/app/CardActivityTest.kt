@@ -28,6 +28,7 @@ class CardActivityTest {
 
     @Before
     fun launchCard() {
+        Thread.sleep(5000)
         onView(withText("Card")).perform(click())
         onView(withText("Card Activity")).check(matches(isDisplayed()))
     }
