@@ -29,7 +29,9 @@ class AlipayActivityTest {
 
     @Before
     fun launchAlipay() {
-        Thread.sleep(5000)
+        onView(withText("Card")).check(matches(isDisplayed()))
+        onView(withText("Alipay")).check(matches(isDisplayed()))
+
         onView(withText("Alipay")).perform(click())
         onView(withText("Alipay Activity")).check(matches(isDisplayed()))
     }
