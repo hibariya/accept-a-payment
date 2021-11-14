@@ -2,8 +2,6 @@
 // https://medium.com/swlh/testing-your-react-native-app-with-expo-appium-eb6b72ce1349
 // https://stackoverflow.com/questions/66891822/how-do-i-test-expo-application-without-building-apk-with-appium
 
-type WDIO = { saveScreen: (name: string) => void } & WebdriverIO.Browser;
-
 describe('Payment with card', function () {
   async function launchApp() {
     const pkg = 'host.exp.exponent';
@@ -21,7 +19,7 @@ describe('Payment with card', function () {
   before(async () => {
     await launchApp();
     await browser.pause(30000);
-    (browser as WDIO).saveScreen(`/work/tmp/screenshots/screen-${new Date().getTime()}`);
+    require('fs').writeFileSync('/work/tmp/screenshots/shot.png', browser.takeScreenshot());
     await dismissDevDialog();
   });
 
