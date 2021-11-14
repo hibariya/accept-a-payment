@@ -227,4 +227,4 @@ jobs:
         with:
           name: screenshots
           path: |
-            tmp/screenshots
+            custom-payment-flow/client/react-native-expo/tmp/screenshots
