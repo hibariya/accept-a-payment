@@ -21,6 +21,8 @@ java -cp target/sample-jar-with-dependencies.jar com.stripe.sample.Server &
 curl -I --retry 30 --retry-delay 3 --retry-connrefused http://localhost:4242/
 cd -
 
+mkdir -p /work/tmp/screenshots
+
 cd custom-payment-flow/client/react-native-expo
 npm install -g expo-cli
 npm install # TODO: yarn?
