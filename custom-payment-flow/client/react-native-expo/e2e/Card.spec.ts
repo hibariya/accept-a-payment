@@ -18,7 +18,7 @@ describe('Payment with card', function () {
 
   before(async () => {
     await launchApp();
-    await dismissDevDialog();
+    // await dismissDevDialog();
   });
 
   beforeEach(launchApp);
