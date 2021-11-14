@@ -18,23 +18,23 @@ describe('Payment with card', function () {
 
   before(async () => {
     await launchApp();
-    require('fs').writeFileSync('tmp/screenshots/shot1.png', Buffer.from(await browser.takeScreenshot()).toString());
+    require('fs').writeFileSync('tmp/screenshots/shot1.png', Buffer.from(await browser.takeScreenshot(), 'base64').toString());
     await browser.pause(1000);
-    require('fs').writeFileSync('tmp/screenshots/shot2.png', Buffer.from(await browser.takeScreenshot()).toString());
+    require('fs').writeFileSync('tmp/screenshots/shot2.png', Buffer.from(await browser.takeScreenshot(), 'base64').toString());
     await browser.pause(1000);
-    require('fs').writeFileSync('tmp/screenshots/shot3.png', Buffer.from(await browser.takeScreenshot()).toString());
+    require('fs').writeFileSync('tmp/screenshots/shot3.png', Buffer.from(await browser.takeScreenshot(), 'base64').toString());
     await browser.pause(1000);
-    require('fs').writeFileSync('tmp/screenshots/shot4.png', Buffer.from(await browser.takeScreenshot()).toString());
+    require('fs').writeFileSync('tmp/screenshots/shot4.png', Buffer.from(await browser.takeScreenshot(), 'base64').toString());
     await browser.pause(1000);
-    require('fs').writeFileSync('tmp/screenshots/shot5.png', Buffer.from(await browser.takeScreenshot()).toString());
+    require('fs').writeFileSync('tmp/screenshots/shot5.png', Buffer.from(await browser.takeScreenshot(), 'base64').toString());
     await browser.pause(1000);
-    require('fs').writeFileSync('tmp/screenshots/shot6.png', Buffer.from(await browser.takeScreenshot()).toString());
+    require('fs').writeFileSync('tmp/screenshots/shot6.png', Buffer.from(await browser.takeScreenshot(), 'base64').toString());
     await browser.pause(1000);
-    require('fs').writeFileSync('tmp/screenshots/shot7.png', Buffer.from(await browser.takeScreenshot()).toString());
+    require('fs').writeFileSync('tmp/screenshots/shot7.png', Buffer.from(await browser.takeScreenshot(), 'base64').toString());
     await browser.pause(1000);
-    require('fs').writeFileSync('tmp/screenshots/shot8.png', Buffer.from(await browser.takeScreenshot()).toString());
+    require('fs').writeFileSync('tmp/screenshots/shot8.png', Buffer.from(await browser.takeScreenshot(), 'base64').toString());
     await browser.pause(1000);
-    require('fs').writeFileSync('tmp/screenshots/shot9.png', Buffer.from(await browser.takeScreenshot()).toString());
+    require('fs').writeFileSync('tmp/screenshots/shot9.png', Buffer.from(await browser.takeScreenshot(), 'base64').toString());
     await dismissDevDialog();
   });
 
