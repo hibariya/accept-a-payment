@@ -222,6 +222,7 @@ jobs:
           script: .github/workflows/react_native_android_e2e.sh
 
       - name: nohup
+        if: ${{ always() }}
         run: |
           cat custom-payment-flow/client/react-native-expo/nohup.out
 
