@@ -215,7 +215,7 @@ jobs:
           curl -o- -L https://github.com/stripe/stripe-cli/releases/download/v1.7.0/stripe_1.7.0_mac-os_x86_64.tar.gz | sudo tar fxz - -C /usr/local/bin
 
       - name: Run tests
-        timeout-minutes: 10
+        timeout-minutes: 15
         uses: reactivecircus/android-emulator-runner@v2
         with:
           api-level: 29

@@ -26,5 +26,5 @@ mkdir -p tmp/screenshots
 npm install -g expo-cli
 npm install # TODO: yarn?
 npm run start -- --android &
-sleep 10 # FIXME
+sleep 60 # FIXME
 npm run wdio -- wdio.android.ts

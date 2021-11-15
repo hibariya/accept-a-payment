@@ -18,7 +18,7 @@ describe('Payment with card', function () {
 
   before(async () => {
     await launchApp();
-    await browser.pause(60000);
+    await browser.pause(20000);
     require('fs').writeFileSync('tmp/screenshots/shot1.png', Buffer.from(await browser.takeScreenshot(), 'base64'), 'binary');
     await browser.pause(10000);
     require('fs').writeFileSync('tmp/screenshots/shot2.png', Buffer.from(await browser.takeScreenshot(), 'base64'), 'binary');
