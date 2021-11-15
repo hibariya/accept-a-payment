@@ -2,6 +2,6 @@
   "extends": "expo/tsconfig.base",
   "compilerOptions": {
     "strict": true,
-    "types": ["node", "webdriverio/sync", "@wdio/mocha-framework", "@wdio/devtools-service", "expect-webdriverio"]
+    "types": ["node", "webdriverio/sync", "@wdio/mocha-framework", "expect-webdriverio"]
   }
 }

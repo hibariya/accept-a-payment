@@ -25,6 +25,7 @@ cd custom-payment-flow/client/react-native-expo
 mkdir -p tmp/screenshots
 npm install -g expo-cli
 npm install # TODO: yarn?
-npm run start -- --android &
-sleep 120 # FIXME
+export REACT_NATIVE_PACKAGER_HOSTNAME=0.0.0.0
+nohup npm run start -- --android &
+sleep 30 # FIXME
 npm run wdio -- wdio.android.ts

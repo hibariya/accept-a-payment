@@ -18,24 +18,10 @@ describe('Payment with card', function () {
 
   before(async () => {
     await launchApp();
-    await browser.pause(20000);
-    require('fs').writeFileSync('tmp/screenshots/shot1.png', Buffer.from(await browser.takeScreenshot(), 'base64'), 'binary');
-    await browser.pause(10000);
-    require('fs').writeFileSync('tmp/screenshots/shot2.png', Buffer.from(await browser.takeScreenshot(), 'base64'), 'binary');
-    await browser.pause(10000);
-    require('fs').writeFileSync('tmp/screenshots/shot3.png', Buffer.from(await browser.takeScreenshot(), 'base64'), 'binary');
-    await browser.pause(10000);
-    require('fs').writeFileSync('tmp/screenshots/shot4.png', Buffer.from(await browser.takeScreenshot(), 'base64'), 'binary');
-    await browser.pause(10000);
-    require('fs').writeFileSync('tmp/screenshots/shot5.png', Buffer.from(await browser.takeScreenshot(), 'base64'), 'binary');
-    await browser.pause(10000);
-    require('fs').writeFileSync('tmp/screenshots/shot6.png', Buffer.from(await browser.takeScreenshot(), 'base64'), 'binary');
-    await browser.pause(10000);
-    require('fs').writeFileSync('tmp/screenshots/shot7.png', Buffer.from(await browser.takeScreenshot(), 'base64'), 'binary');
-    await browser.pause(10000);
-    require('fs').writeFileSync('tmp/screenshots/shot8.png', Buffer.from(await browser.takeScreenshot(), 'base64'), 'binary');
-    await browser.pause(10000);
-    require('fs').writeFileSync('tmp/screenshots/shot9.png', Buffer.from(await browser.takeScreenshot(), 'base64'), 'binary');
+    for(let t = 1; t < 10; t++) {
+      require('fs').writeFileSync(`tmp/screenshots/shot${t}.png`, Buffer.from(await browser.takeScreenshot(), 'base64'), 'binary');
+      await browser.pause(3000);
+    }
     await dismissDevDialog();
   });
 
