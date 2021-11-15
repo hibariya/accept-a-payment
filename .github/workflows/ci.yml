@@ -214,11 +214,9 @@ jobs:
         run: |
           curl -o- -L https://github.com/stripe/stripe-cli/releases/download/v1.7.0/stripe_1.7.0_mac-os_x86_64.tar.gz | sudo tar fxz - -C /usr/local/bin
           brew install chromium
-          which -a chromium
-          ln -s /usr/local/bin/chromium /usr/bin/chromium
 
       - name: Run tests
-        timeout-minutes: 15
+        timeout-minutes: 20
         uses: reactivecircus/android-emulator-runner@v2
         with:
           api-level: 29
