@@ -221,6 +221,10 @@ jobs:
           api-level: 29
           script: .github/workflows/react_native_android_e2e.sh
 
+      - name: nohup
+        run: |
+          cat custom-payment-flow/client/react-native-expo/nohup.out
+
       - name: Upload screenshots
         if: ${{ failure() }}
         uses: actions/upload-artifact@v2
