@@ -224,7 +224,8 @@ jobs:
       - name: nohup
         if: ${{ always() }}
         run: |
-          cat custom-payment-flow/client/react-native-expo/nohup.out
+          pwd
+          cat custom-payment-flow/client/react-native-expo/nohup.out || cat nohup.out
 
       - name: Upload screenshots
         if: ${{ failure() }}
