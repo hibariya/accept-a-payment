@@ -18,10 +18,10 @@ describe('Payment with card', function () {
 
   before(async () => {
     await launchApp();
-    for(let t = 1; t < 10; t++) {
-      require('fs').writeFileSync(`tmp/screenshots/shot${t}.png`, Buffer.from(await browser.takeScreenshot(), 'base64'), 'binary');
-      await browser.pause(3000);
-    }
+    // for(let t = 1; t < 10; t++) {
+    //   require('fs').writeFileSync(`tmp/screenshots/shot${t}.png`, Buffer.from(await browser.takeScreenshot(), 'base64'), 'binary');
+    //   await browser.pause(3000);
+    // }
     await dismissDevDialog();
   });
 
