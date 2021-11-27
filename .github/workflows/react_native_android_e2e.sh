@@ -16,8 +16,8 @@ PRICE="$PRICE"
 PAYMENT_METHOD_TYPES="card"
 STATIC_DIR="../../client/html"
 EOF
-mvn package
-java -cp target/sample-jar-with-dependencies.jar com.stripe.sample.Server &
+npm install
+npm start
 curl -I --retry 30 --retry-delay 3 --retry-connrefused http://localhost:4242/
 cd -
 

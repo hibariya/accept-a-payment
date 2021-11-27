@@ -1,4 +1,4 @@
-require('expect-webdriverio').setOptions({ wait: 15000, interval: 100 });
+require('expect-webdriverio').setOptions({ wait: 150000, interval: 100 });
 
 export const config = {
     //
@@ -76,6 +76,7 @@ export const config = {
         adbExecTimeout: 1000000,
         skipLogcatCapture: true,
         automationName: 'UiAutomator2',
+        optionalIntentArguments: '--ez EXKernelDisableNuxDefaultsKey true',
     }],
     //
     // ===================
