@@ -6,7 +6,8 @@ describe('Payment with card', function () {
   async function launchApp() {
     const pkg = 'host.exp.exponent';
     const activity = '.experience.HomeActivity';
-    await browser.startActivity(pkg, activity);
+    // await browser.startActivity(pkg, activity);
+    await browser.execute('mobile:startActivity', { intent: activity, package: pkg, extras: [['z', 'EXKernelDisableNuxDefaultsKey', true]] });
     await browser.execute('mobile:deepLink', { url: 'exp://127.0.0.1:19000', package: pkg });
   }
 
