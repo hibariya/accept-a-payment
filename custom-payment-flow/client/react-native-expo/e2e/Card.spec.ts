@@ -19,7 +19,6 @@ describe('Payment with card', function () {
 
   before(async () => {
     await launchApp();
-    await dismissDevDialog();
     // require('fs').writeFileSync(`tmp/screenshots/shot0.png`, Buffer.from(await browser.takeScreenshot(), 'base64'), 'binary');
     // for(let t = 1; t < 10; t++) {
     //   require('fs').writeFileSync(`tmp/screenshots/shot${t}.png`, Buffer.from(await browser.takeScreenshot(), 'base64'), 'binary');
@@ -41,6 +40,8 @@ describe('Payment with card', function () {
   // [0-0] 2021-11-25T21:45:25.139Z INFO webdriver: COMMAND findElement("-android uiautomator", "new UiSelector().text("Error code:")")
 
   it('happy path', async function () {
+    await dismissDevDialog();
+
     const link = await $(`android=new UiSelector().text("Card")`);
     await link.click();
 
