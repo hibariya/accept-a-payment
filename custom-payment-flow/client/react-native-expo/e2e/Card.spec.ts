@@ -6,8 +6,8 @@ describe('Payment with card', function () {
   async function launchApp() {
     const pkg = 'host.exp.exponent';
     const activity = '.experience.HomeActivity';
-    // await browser.startActivity(pkg, activity);
-    await browser.execute('mobile:startActivity', { intent: activity, package: pkg, extras: [['z', 'EXKernelDisableNuxDefaultsKey', true]] });
+    await browser.startActivity(pkg, activity);
+    // await browser.execute('mobile:startActivity', { intent: activity, package: pkg, extras: [['z', 'EXKernelDisableNuxDefaultsKey', true]] });
     await browser.execute('mobile:deepLink', { url: 'exp://127.0.0.1:19000', package: pkg });
   }
 
@@ -19,6 +19,7 @@ describe('Payment with card', function () {
 
   before(async () => {
     await launchApp();
+    await dismissDevDialog();
     // require('fs').writeFileSync(`tmp/screenshots/shot0.png`, Buffer.from(await browser.takeScreenshot(), 'base64'), 'binary');
     // for(let t = 1; t < 10; t++) {
     //   require('fs').writeFileSync(`tmp/screenshots/shot${t}.png`, Buffer.from(await browser.takeScreenshot(), 'base64'), 'binary');

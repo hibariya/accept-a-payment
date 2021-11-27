@@ -76,7 +76,7 @@ export const config = {
         adbExecTimeout: 1000000,
         skipLogcatCapture: true,
         automationName: 'UiAutomator2',
-        optionalIntentArguments: '--ez EXKernelDisableNuxDefaultsKey true',
+        // optionalIntentArguments: '--ez EXKernelDisableNuxDefaultsKey true',
     }],
     //
     // ===================
