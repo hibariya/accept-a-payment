@@ -4,6 +4,7 @@
 
 describe('Payment with card', function () {
   async function launchApp() {
+    console.log('============== launchApp()');
     const pkg = 'host.exp.exponent';
     const activity = '.experience.HomeActivity';
     await browser.startActivity(pkg, activity);
@@ -12,6 +13,7 @@ describe('Payment with card', function () {
   }
 
   async function dismissDevDialog() {
+    console.log('============== dismissDevDialog()');
     const dialogCloseButton = await $(`android=new UiSelector().text("Got it")`);
     await dialogCloseButton.click();
     await $(`android=new UiSelector().text("react-native-expo")`);
@@ -40,6 +42,7 @@ describe('Payment with card', function () {
   // [0-0] 2021-11-25T21:45:25.139Z INFO webdriver: COMMAND findElement("-android uiautomator", "new UiSelector().text("Error code:")")
 
   it('happy path', async function () {
+    console.log('============== happy path');
     await dismissDevDialog();
 
     const link = await $(`android=new UiSelector().text("Card")`);
@@ -69,6 +72,7 @@ describe('Payment with card', function () {
   });
 
   it('failure path', async function () {
+    console.log('============== failure path');
     const link = await $(`android=new UiSelector().text("Card")`);
     await link.click();
 
