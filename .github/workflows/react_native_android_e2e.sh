@@ -9,7 +9,7 @@ trap killBackgroundJobs EXIT
 export STRIPE_WEBHOOK_SECRET=$(stripe listen --api-key $STRIPE_SECRET_KEY --print-secret)
 stripe listen --forward-to http://localhost:4242/webhook &
 
-cd custom-payment-flow/server/java
+cd custom-payment-flow/server/node
 cat <<EOF >> .env
 DOMAIN="http://10.0.2.2:4242"
 PRICE="$PRICE"
