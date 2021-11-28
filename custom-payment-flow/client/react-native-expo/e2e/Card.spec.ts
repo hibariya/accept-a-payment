@@ -33,22 +33,37 @@ describe('Payment with card', function () {
     //   throw e;
     // }
     try {
+      console.log('============== dismissDevDialog(1)');
       await launchApp();
       await dismissDevDialog();
     } catch (e) {
+      require('fs').writeFileSync(`tmp/screenshots/shot0.png`, Buffer.from(await browser.takeScreenshot(), 'base64'), 'binary');
       console.log(e);
     }
 
     try {
+      console.log('============== dismissDevDialog(2)');
       await launchApp();
       await dismissDevDialog();
     } catch (e) {
+      require('fs').writeFileSync(`tmp/screenshots/shot1.png`, Buffer.from(await browser.takeScreenshot(), 'base64'), 'binary');
       console.log(e);
     }
 
     try {
+      console.log('============== dismissDevDialog(3)');
       await launchApp();
       await dismissDevDialog();
+    } catch (e) {
+      require('fs').writeFileSync(`tmp/screenshots/shot2.png`, Buffer.from(await browser.takeScreenshot(), 'base64'), 'binary');
+      console.log(e);
+    }
+
+    try {
+      console.log('============== dismissDevDialog(4)');
+      await launchApp();
+      await dismissDevDialog();
+      require('fs').writeFileSync(`tmp/screenshots/shot3.png`, Buffer.from(await browser.takeScreenshot(), 'base64'), 'binary');
     } catch (e) {
       console.log(e);
     }

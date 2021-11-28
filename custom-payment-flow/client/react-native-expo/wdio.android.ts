@@ -1,4 +1,4 @@
-require('expect-webdriverio').setOptions({ wait: 15000, interval: 100 });
+require('expect-webdriverio').setOptions({ wait: 30000, interval: 100 });
 
 export const config = {
     //
@@ -72,7 +72,7 @@ export const config = {
         intentAction: 'android.intent.action.MAIN',
         appWaitForLaunch: true,
         newCommandTimeout: 180,
-        uiautomator2ServerInstallTimeout: 10000,
+        uiautomator2ServerInstallTimeout: 30000,
         adbExecTimeout: 100000,
         skipLogcatCapture: true,
         automationName: 'UiAutomator2',
@@ -154,7 +154,7 @@ export const config = {
     // See the full list at http://mochajs.org/
     mochaOpts: {
         ui: 'bdd',
-        timeout: 180000
+        timeout: 360000
     },
     //
     // =====
