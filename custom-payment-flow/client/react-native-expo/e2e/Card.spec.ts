@@ -1,120 +1,39 @@
-// TODO: make it .ts
-// https://medium.com/swlh/testing-your-react-native-app-with-expo-appium-eb6b72ce1349
-// https://stackoverflow.com/questions/66891822/how-do-i-test-expo-application-without-building-apk-with-appium
-
 describe('Payment with card', function () {
   async function launchApp() {
-    console.log('============== launchApp()');
     const pkg = 'host.exp.exponent';
     const activity = '.experience.HomeActivity';
     await browser.startActivity(pkg, activity);
-    // await browser.execute('mobile:startActivity', { intent: activity, package: pkg, extras: [['z', 'EXKernelDisableNuxDefaultsKey', true]] });
     await browser.execute('mobile:deepLink', { url: 'exp://127.0.0.1:19000', package: pkg });
   }
 
-  async function dismissDevDialog() {
-    console.log('============== dismissDevDialog()');
-    const dialogCloseButton = await $(`android=new UiSelector().text("Got it")`);
-    await dialogCloseButton.click();
-    await $(`android=new UiSelector().text("react-native-expo")`);
+  async function dismissDevDialog(retry = 3) {
+    console.log(`dismissDevDialog(retry = ${retry});`);
+
+    try {
+      await launchApp();
+
+      const dialogCloseButton = await $(`android=new UiSelector().text("Got it")`);
+      await dialogCloseButton.click();
+      await $(`android=new UiSelector().text("react-native-expo")`);
+    } catch (e) {
+      if (retry > 0) dismissDevDialog(retry - 1);
+    }
   }
 
-  before(async () => {
-    // await launchApp();
-    // require('fs').writeFileSync(`tmp/screenshots/shot0.png`, Buffer.from(await browser.takeScreenshot(), 'base64'), 'binary');
-    // for(let t = 1; t < 10; t++) {
-    //   require('fs').writeFileSync(`tmp/screenshots/shot${t}.png`, Buffer.from(await browser.takeScreenshot(), 'base64'), 'binary');
-    //   await browser.pause(3000);
-    // }
-    // try {
-    //   await dismissDevDialog();
-    // } catch (e) {
-    //   require('fs').writeFileSync(`tmp/screenshots/shot1.png`, Buffer.from(await browser.takeScreenshot(), 'base64'), 'binary');
-    //   throw e;
-    // }
-    let dismissed = false;
-    try {
-      console.log('============== dismissDevDialog(1)');
-      if (!dismissed) {
-        await launchApp();
-        await dismissDevDialog();
-        dismissed = true;
-      }
-    } catch (e) {
-      console.log('============== dismissDevDialog(1) failed');
-      require('fs').writeFileSync(`tmp/screenshots/shot0.png`, Buffer.from(await browser.takeScreenshot(), 'base64'), 'binary');
-      console.log(e);
-    }
+  before(dismissDevDialog);
 
-    try {
-      console.log('============== dismissDevDialog(2)');
-      if (!dismissed) {
-        await launchApp();
-        await dismissDevDialog();
-        dismissed = true;
-      }
-    } catch (e) {
-      console.log('============== dismissDevDialog(2) failed');
-      require('fs').writeFileSync(`tmp/screenshots/shot1.png`, Buffer.from(await browser.takeScreenshot(), 'base64'), 'binary');
-      console.log(e);
-    }
+  beforeEach(launchApp);
 
-    try {
-      console.log('============== dismissDevDialog(3)');
-      if (!dismissed) {
-        await launchApp();
-        await dismissDevDialog();
-        dismissed = true;
-      }
-    } catch (e) {
-      console.log('============== dismissDevDialog(3) failed');
-      require('fs').writeFileSync(`tmp/screenshots/shot2.png`, Buffer.from(await browser.takeScreenshot(), 'base64'), 'binary');
-      console.log(e);
-    }
-
-    try {
-      console.log('============== dismissDevDialog(4)');
-      if (!dismissed) {
-        await launchApp();
-        await dismissDevDialog();
-        dismissed = true;
-      }
-    } catch (e) {
-      console.log('============== dismissDevDialog(4) failed');
-      require('fs').writeFileSync(`tmp/screenshots/shot3.png`, Buffer.from(await browser.takeScreenshot(), 'base64'), 'binary');
-      console.log(e);
-    }
-
-    try {
-      console.log('============== dismissDevDialog(5)');
-      if (!dismissed) {
-        await launchApp();
-        await dismissDevDialog();
-        dismissed = true;
-      }
-    } catch (e) {
-      console.log('============== dismissDevDialog(5) failed');
-      require('fs').writeFileSync(`tmp/screenshots/shot4.png`, Buffer.from(await browser.takeScreenshot(), 'base64'), 'binary');
-      console.log(e);
+  afterEach(async function () {
+    if (this.currentTest && this.currentTest.isPassed) {
+      require('fs').writeFileSync(
+        `tmp/screenshots/${this.currentTest.fullTitle}.png`,
+        Buffer.from(await browser.takeScreenshot(), 'base64'), 'binary'
+      );
     }
   });
 
-  beforeEach(async () => {
-    await launchApp();
-  });
-
-  let nthTest = 1;
-  afterEach(async () => {
-    require('fs').writeFileSync(`tmp/screenshots/shot-after-${nthTest}.png`, Buffer.from(await browser.takeScreenshot(), 'base64'), 'binary');
-    nthTest++;
-  });
-  // [0-0] 2021-11-25T21:44:45.125Z INFO webdriver: COMMAND startActivity("host.exp.exponent", ".experience.HomeActivity")
-  // [21:44:50] Android Bundling complete 28ms
-  // [0-0] 2021-11-25T21:44:50.434Z INFO webdriver: COMMAND findElement("-android uiautomator", "new UiSelector().text("Card")")
-  // [0-0] 2021-11-25T21:45:07.343Z INFO webdriver: RESULT [
-  // [0-0] 2021-11-25T21:45:25.139Z INFO webdriver: COMMAND findElement("-android uiautomator", "new UiSelector().text("Error code:")")
-
-  it('happy path', async function () {
+  it('happy path', async () => {
     console.log('============== happy path');
 
     const link = await $(`android=new UiSelector().text("Card")`);
@@ -143,7 +62,7 @@ describe('Payment with card', function () {
     await (await $(`android=new UiSelector().text("OK")`)).click();
   });
 
-  it('failure path', async function () {
+  it('failure path', async () => {
     console.log('============== failure path');
     const link = await $(`android=new UiSelector().text("Card")`);
     await link.click();
@@ -166,10 +85,8 @@ describe('Payment with card', function () {
     const payButton = await $(`android=new UiSelector().text("PAY")`);
     await payButton.click();
 
-    // const dialog = await $(`android=new UiSelector().text("Error code:")`);
-    // expect(dialog).toBeDisplayed();
-    const ok = await $(`android=new UiSelector().text("OK")`);
-    require('fs').writeFileSync(`tmp/screenshots/shot4.png`, Buffer.from(await browser.takeScreenshot(), 'base64'), 'binary');
-    await ok.click();
+    const dialog = await $(`android=new UiSelector().text("Error code:")`);
+    expect(dialog).toBeDisplayed();
+    await (await $(`android=new UiSelector().text("OK")`)).click();
   });
 });
