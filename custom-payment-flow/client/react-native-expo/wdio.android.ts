@@ -112,7 +112,7 @@ export const config = {
     // baseUrl: 'http://localhost:4723/wd/hub/',
     //
     // Default timeout for all waitFor* commands.
-    waitforTimeout: 9000,
+    waitforTimeout: 36000,
     //
     // Default timeout in milliseconds for request
     // if browser driver or grid doesn't send response
