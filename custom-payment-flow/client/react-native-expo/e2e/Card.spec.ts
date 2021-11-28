@@ -37,6 +37,7 @@ describe('Payment with card', function () {
       await launchApp();
       await dismissDevDialog();
     } catch (e) {
+      console.log('============== dismissDevDialog(1) failed');
       require('fs').writeFileSync(`tmp/screenshots/shot0.png`, Buffer.from(await browser.takeScreenshot(), 'base64'), 'binary');
       console.log(e);
     }
@@ -46,6 +47,7 @@ describe('Payment with card', function () {
       await launchApp();
       await dismissDevDialog();
     } catch (e) {
+      console.log('============== dismissDevDialog(2) failed');
       require('fs').writeFileSync(`tmp/screenshots/shot1.png`, Buffer.from(await browser.takeScreenshot(), 'base64'), 'binary');
       console.log(e);
     }
@@ -55,6 +57,7 @@ describe('Payment with card', function () {
       await launchApp();
       await dismissDevDialog();
     } catch (e) {
+      console.log('============== dismissDevDialog(3) failed');
       require('fs').writeFileSync(`tmp/screenshots/shot2.png`, Buffer.from(await browser.takeScreenshot(), 'base64'), 'binary');
       console.log(e);
     }
@@ -64,6 +67,7 @@ describe('Payment with card', function () {
       await launchApp();
       await dismissDevDialog();
     } catch (e) {
+      console.log('============== dismissDevDialog(4) failed');
       require('fs').writeFileSync(`tmp/screenshots/shot3.png`, Buffer.from(await browser.takeScreenshot(), 'base64'), 'binary');
       console.log(e);
     }
@@ -73,6 +77,7 @@ describe('Payment with card', function () {
       await launchApp();
       await dismissDevDialog();
     } catch (e) {
+      console.log('============== dismissDevDialog(5) failed');
       require('fs').writeFileSync(`tmp/screenshots/shot4.png`, Buffer.from(await browser.takeScreenshot(), 'base64'), 'binary');
       console.log(e);
     }
@@ -142,7 +147,7 @@ describe('Payment with card', function () {
     // const dialog = await $(`android=new UiSelector().text("Error code:")`);
     // expect(dialog).toBeDisplayed();
     const ok = await $(`android=new UiSelector().text("OK")`);
-    require('fs').writeFileSync(`tmp/screenshots/shot0.png`, Buffer.from(await browser.takeScreenshot(), 'base64'), 'binary');
+    require('fs').writeFileSync(`tmp/screenshots/shot4.png`, Buffer.from(await browser.takeScreenshot(), 'base64'), 'binary');
     await ok.click();
   });
 });
