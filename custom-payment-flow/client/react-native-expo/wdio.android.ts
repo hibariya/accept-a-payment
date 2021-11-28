@@ -1,4 +1,4 @@
-require('expect-webdriverio').setOptions({ wait: 150000, interval: 100 });
+require('expect-webdriverio').setOptions({ wait: 15000, interval: 100 });
 
 export const config = {
     //
@@ -72,8 +72,8 @@ export const config = {
         intentAction: 'android.intent.action.MAIN',
         appWaitForLaunch: true,
         newCommandTimeout: 180,
-        uiautomator2ServerInstallTimeout: 100000,
-        adbExecTimeout: 1000000,
+        uiautomator2ServerInstallTimeout: 10000,
+        adbExecTimeout: 100000,
         skipLogcatCapture: true,
         automationName: 'UiAutomator2',
         // optionalIntentArguments: '--ez EXKernelDisableNuxDefaultsKey true',
@@ -112,7 +112,7 @@ export const config = {
     // baseUrl: 'http://localhost:4723/wd/hub/',
     //
     // Default timeout for all waitFor* commands.
-    waitforTimeout: 90000,
+    waitforTimeout: 9000,
     //
     // Default timeout in milliseconds for request
     // if browser driver or grid doesn't send response
