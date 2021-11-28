@@ -1,7 +1,9 @@
 #!/bin/bash -e
 
 function killBackgroundJobs() {
+  set +e
   kill $(jobs -p) || kill $(jobs -p) || kill -9 $(jobs -p)
+  kill $(ps -e | grep 'bin/expo' | grep -v grep | awk '{ print $1 }')
 }
 
 trap killBackgroundJobs EXIT
