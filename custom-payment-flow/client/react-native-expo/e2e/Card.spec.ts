@@ -20,7 +20,7 @@ describe('Payment with card', function () {
   }
 
   before(async () => {
-    await launchApp();
+    // await launchApp();
     // require('fs').writeFileSync(`tmp/screenshots/shot0.png`, Buffer.from(await browser.takeScreenshot(), 'base64'), 'binary');
     // for(let t = 1; t < 10; t++) {
     //   require('fs').writeFileSync(`tmp/screenshots/shot${t}.png`, Buffer.from(await browser.takeScreenshot(), 'base64'), 'binary');
@@ -32,9 +32,31 @@ describe('Payment with card', function () {
     //   require('fs').writeFileSync(`tmp/screenshots/shot1.png`, Buffer.from(await browser.takeScreenshot(), 'base64'), 'binary');
     //   throw e;
     // }
+    try {
+      await launchApp();
+      await dismissDevDialog();
+    } catch (e) {
+      console.log(e);
+    }
+
+    try {
+      await launchApp();
+      await dismissDevDialog();
+    } catch (e) {
+      console.log(e);
+    }
+
+    try {
+      await launchApp();
+      await dismissDevDialog();
+    } catch (e) {
+      console.log(e);
+    }
   });
 
-  beforeEach(launchApp);
+  beforeEach(async () => {
+    await launchApp();
+  });
   // [0-0] 2021-11-25T21:44:45.125Z INFO webdriver: COMMAND startActivity("host.exp.exponent", ".experience.HomeActivity")
   // [21:44:50] Android Bundling complete 28ms
   // [0-0] 2021-11-25T21:44:50.434Z INFO webdriver: COMMAND findElement("-android uiautomator", "new UiSelector().text("Card")")
@@ -43,7 +65,6 @@ describe('Payment with card', function () {
 
   it('happy path', async function () {
     console.log('============== happy path');
-    await dismissDevDialog();
 
     const link = await $(`android=new UiSelector().text("Card")`);
     await link.click();
