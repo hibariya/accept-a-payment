@@ -16,13 +16,21 @@ describe('Payment with card', function () {
       await dialogCloseButton.click();
       await $(`android=new UiSelector().text("react-native-expo")`);
     } catch (e) {
-      if (retry > 0) dismissDevDialog(retry - 1);
+      if (retry > 0) {
+        dismissDevDialog(retry - 1);
+      } else {
+        throw e;
+      }
     }
   }
 
-  before(dismissDevDialog);
+  before(async () => {
+    await dismissDevDialog();
+  });
 
-  beforeEach(launchApp);
+  beforeEach(async () => {
+    await launchApp();
+  });
 
   afterEach(async function () {
     if (this.currentTest && this.currentTest.isPassed) {
