@@ -1,4 +1,4 @@
-require('expect-webdriverio').setOptions({ wait: 30000, interval: 100 });
+require('expect-webdriverio').setOptions({ wait: 36000, interval: 100 });
 
 export const config = {
     //

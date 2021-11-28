@@ -32,10 +32,14 @@ describe('Payment with card', function () {
     //   require('fs').writeFileSync(`tmp/screenshots/shot1.png`, Buffer.from(await browser.takeScreenshot(), 'base64'), 'binary');
     //   throw e;
     // }
+    let dismissed = false;
     try {
       console.log('============== dismissDevDialog(1)');
-      await launchApp();
-      await dismissDevDialog();
+      if (!dismissed) {
+        await launchApp();
+        await dismissDevDialog();
+        dismissed = true;
+      }
     } catch (e) {
       console.log('============== dismissDevDialog(1) failed');
       require('fs').writeFileSync(`tmp/screenshots/shot0.png`, Buffer.from(await browser.takeScreenshot(), 'base64'), 'binary');
@@ -44,8 +48,11 @@ describe('Payment with card', function () {
 
     try {
       console.log('============== dismissDevDialog(2)');
-      await launchApp();
-      await dismissDevDialog();
+      if (!dismissed) {
+        await launchApp();
+        await dismissDevDialog();
+        dismissed = true;
+      }
     } catch (e) {
       console.log('============== dismissDevDialog(2) failed');
       require('fs').writeFileSync(`tmp/screenshots/shot1.png`, Buffer.from(await browser.takeScreenshot(), 'base64'), 'binary');
@@ -54,8 +61,11 @@ describe('Payment with card', function () {
 
     try {
       console.log('============== dismissDevDialog(3)');
-      await launchApp();
-      await dismissDevDialog();
+      if (!dismissed) {
+        await launchApp();
+        await dismissDevDialog();
+        dismissed = true;
+      }
     } catch (e) {
       console.log('============== dismissDevDialog(3) failed');
       require('fs').writeFileSync(`tmp/screenshots/shot2.png`, Buffer.from(await browser.takeScreenshot(), 'base64'), 'binary');
@@ -64,8 +74,11 @@ describe('Payment with card', function () {
 
     try {
       console.log('============== dismissDevDialog(4)');
-      await launchApp();
-      await dismissDevDialog();
+      if (!dismissed) {
+        await launchApp();
+        await dismissDevDialog();
+        dismissed = true;
+      }
     } catch (e) {
       console.log('============== dismissDevDialog(4) failed');
       require('fs').writeFileSync(`tmp/screenshots/shot3.png`, Buffer.from(await browser.takeScreenshot(), 'base64'), 'binary');
@@ -74,8 +87,11 @@ describe('Payment with card', function () {
 
     try {
       console.log('============== dismissDevDialog(5)');
-      await launchApp();
-      await dismissDevDialog();
+      if (!dismissed) {
+        await launchApp();
+        await dismissDevDialog();
+        dismissed = true;
+      }
     } catch (e) {
       console.log('============== dismissDevDialog(5) failed');
       require('fs').writeFileSync(`tmp/screenshots/shot4.png`, Buffer.from(await browser.takeScreenshot(), 'base64'), 'binary');
@@ -85,6 +101,12 @@ describe('Payment with card', function () {
 
   beforeEach(async () => {
     await launchApp();
+  });
+
+  let nthTest = 1;
+  afterEach(async () => {
+    require('fs').writeFileSync(`tmp/screenshots/shot-after-${nthTest}.png`, Buffer.from(await browser.takeScreenshot(), 'base64'), 'binary');
+    nthTest++;
   });
   // [0-0] 2021-11-25T21:44:45.125Z INFO webdriver: COMMAND startActivity("host.exp.exponent", ".experience.HomeActivity")
   // [21:44:50] Android Bundling complete 28ms
