@@ -1,7 +1,7 @@
 #!/bin/bash -e
 
 function killBackgroundJobs() {
-  kill $(jobs -p)
+  kill $(jobs -p) || kill $(jobs -p) || kill -9 $(jobs -p)
 }
 
 trap killBackgroundJobs EXIT
