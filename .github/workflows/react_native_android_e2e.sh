@@ -2,7 +2,7 @@
 
 function killBackgroundJobs() {
   set +e
-  kill $(jobs -p) || kill $(jobs -p) || kill -9 $(jobs -p)
+  kill $(jobs -p)
   kill $(ps -e | grep 'bin/expo' | grep -v grep | awk '{ print $1 }')
 }
 
@@ -26,8 +26,8 @@ cd -
 cd custom-payment-flow/client/react-native-expo
 mkdir -p tmp/screenshots
 npm install -g expo-cli
-npm install # TODO: yarn?
+npm install
 export REACT_NATIVE_PACKAGER_HOSTNAME=127.0.0.1
 (npm run start -- --android --no-dev &) &
-sleep 30 # FIXME
+
 npm run wdio -- wdio.android.ts
