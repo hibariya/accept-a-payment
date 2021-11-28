@@ -35,7 +35,7 @@ describe('Payment with card', function () {
   afterEach(async function () {
     if (this.currentTest && this.currentTest.isPassed) {
       require('fs').writeFileSync(
-        `tmp/screenshots/${this.currentTest.fullTitle}.png`,
+        `tmp/screenshots/${this.currentTest.fullTitle.replace(/\s+/g, '_')}.png`,
         Buffer.from(await browser.takeScreenshot(), 'base64'), 'binary'
       );
     }
