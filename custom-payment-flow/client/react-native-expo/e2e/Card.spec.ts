@@ -19,9 +19,17 @@ describe('Payment with card', function () {
       if (retry > 0) {
         dismissDevDialog(retry - 1);
       } else {
+        takeScreenshot('failedToDismissDevDialog');
         throw e;
       }
     }
+  }
+
+  function takeScreenshot(name) {
+    require('fs').writeFileSync(
+      `tmp/screenshots/${name}.png`,
+      Buffer.from(await browser.takeScreenshot(), 'base64'), 'binary'
+    );
   }
 
   before(async () => {
@@ -34,10 +42,7 @@ describe('Payment with card', function () {
 
   afterEach(async function () {
     if (this.currentTest && this.currentTest.isPassed) {
-      require('fs').writeFileSync(
-        `tmp/screenshots/${this.currentTest.fullTitle.replace(/\s+/g, '_')}.png`,
-        Buffer.from(await browser.takeScreenshot(), 'base64'), 'binary'
-      );
+      takeScreenshot((this.currentTest.fullTitle || 'shot').replace(/\s+/g, '_'));
     }
   });
 
