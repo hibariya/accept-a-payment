@@ -25,7 +25,7 @@ describe('Payment with card', function () {
     }
   }
 
-  async function takeScreenshot(name) {
+  async function takeScreenshot(name: string) {
     require('fs').writeFileSync(
       `tmp/screenshots/${name}.png`,
       Buffer.from(await browser.takeScreenshot(), 'base64'),
@@ -33,13 +33,17 @@ describe('Payment with card', function () {
     );
   }
 
-  before(async () => {
-    await dismissDevDialog();
-  });
+  async function findElementByText(text: string) {
+    return await $(`android=new UiSelector().text("${text}")`);
+  }
 
-  beforeEach(async () => {
-    await launchApp();
-  });
+  async function findElementByResourceId(id: string) {
+    return await $(`//*[contains(@resource-id,"${id}")]`);
+  }
+
+  before(dismissDevDialog);
+
+  beforeEach(launchApp);
 
   afterEach(async function () {
     if (this.currentTest && this.currentTest.isPassed) {
@@ -48,59 +52,56 @@ describe('Payment with card', function () {
   });
 
   it('happy path', async () => {
-    console.log('============== happy path');
-
-    const link = await $(`android=new UiSelector().text("Card")`);
+    const link = await findElementByText("Card");
     await link.click();
 
-    const name = await $(`android=new UiSelector().text("Name")`);
+    const name = await findElementByText("Name");
     await name.setValue('Saul Goodman');
 
-    const cardNumberEdit = await $('//android.widget.EditText[contains(@resource-id,"card_number_edit_text")]');
+    const cardNumberEdit = await findElementByResourceId("card_number_edit_text");
     await cardNumberEdit.setValue('4242424242424242');
 
-    const expiryDateEdit = await $('//android.widget.EditText[contains(@resource-id,"expiry_date_edit_text")]');
+    const expiryDateEdit = await findElementByResourceId("expiry_date_edit_text");
     await expiryDateEdit.setValue('12/22');
 
-    const CvCEdit = await $('//android.widget.EditText[contains(@resource-id,"cvc_edit_text")]');
+    const CvCEdit = await findElementByResourceId("cvc_edit_text");
     await CvCEdit.setValue('123');
 
-    const PostalCodeEdit = await $('//android.widget.EditText[contains(@resource-id,"postal_code_edit_text")]');
+    const PostalCodeEdit = await findElementByResourceId("postal_code_edit_text");
     await PostalCodeEdit.setValue('1000');
 
-    const payButton = await $(`android=new UiSelector().text("PAY")`);
+    const payButton = await findElementByText("PAY");
     await payButton.click();
 
-    const dialog = await $(`android=new UiSelector().text("The payment was confirmed successfully")`);
+    const dialog = await findElementByText("The payment was confirmed successfully");
     expect(dialog).toBeDisplayed();
-    await (await $(`android=new UiSelector().text("OK")`)).click();
+    await (await findElementByText("OK")).click();
   });
 
   it('failure path', async () => {
-    console.log('============== failure path');
-    const link = await $(`android=new UiSelector().text("Card")`);
+    const link = await findElementByText("Card");
     await link.click();
 
-    const name = await $(`android=new UiSelector().text("Name")`);
+    const name = await findElementByText("Name");
     await name.setValue('Saul Goodman');
 
-    const cardNumberEdit = await $('//android.widget.EditText[contains(@resource-id,"card_number_edit_text")]');
+    const cardNumberEdit = await findElementByResourceId("card_number_edit_text");
     await cardNumberEdit.setValue('4000000000000101');
 
-    const expiryDateEdit = await $('//android.widget.EditText[contains(@resource-id,"expiry_date_edit_text")]');
+    const expiryDateEdit = await findElementByResourceId("expiry_date_edit_text");
     await expiryDateEdit.setValue('12/22');
 
-    const CvCEdit = await $('//android.widget.EditText[contains(@resource-id,"cvc_edit_text")]');
+    const CvCEdit = await findElementByResourceId("cvc_edit_text");
     await CvCEdit.setValue('123');
 
-    const PostalCodeEdit = await $('//android.widget.EditText[contains(@resource-id,"postal_code_edit_text")]');
+    const PostalCodeEdit = await findElementByResourceId("postal_code_edit_text");
     await PostalCodeEdit.setValue('1000');
 
-    const payButton = await $(`android=new UiSelector().text("PAY")`);
+    const payButton = await findElementByText("PAY");
     await payButton.click();
 
-    const dialog = await $(`android=new UiSelector().text("Error code:")`);
+    const dialog = await findElementByText("Error code:");
     expect(dialog).toBeDisplayed();
-    await (await $(`android=new UiSelector().text("OK")`)).click();
+    await (await findElementByText("OK")).click();
   });
 });
