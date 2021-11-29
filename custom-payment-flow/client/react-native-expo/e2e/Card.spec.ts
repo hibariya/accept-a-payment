@@ -17,18 +17,19 @@ describe('Payment with card', function () {
       await $(`android=new UiSelector().text("react-native-expo")`);
     } catch (e) {
       if (retry > 0) {
-        dismissDevDialog(retry - 1);
+        await dismissDevDialog(retry - 1);
       } else {
-        takeScreenshot('failedToDismissDevDialog');
+        await takeScreenshot('failedToDismissDevDialog');
         throw e;
       }
     }
   }
 
-  function takeScreenshot(name) {
+  async function takeScreenshot(name) {
     require('fs').writeFileSync(
       `tmp/screenshots/${name}.png`,
-      Buffer.from(await browser.takeScreenshot(), 'base64'), 'binary'
+      Buffer.from(await browser.takeScreenshot(), 'base64'),
+      'binary'
     );
   }
 
@@ -42,7 +43,7 @@ describe('Payment with card', function () {
 
   afterEach(async function () {
     if (this.currentTest && this.currentTest.isPassed) {
-      takeScreenshot((this.currentTest.fullTitle || 'shot').replace(/\s+/g, '_'));
+      await takeScreenshot(this.currentTest.fullTitle().replace(/\s+/g, '_'));
     }
   });
 
