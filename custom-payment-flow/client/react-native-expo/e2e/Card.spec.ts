@@ -41,6 +41,16 @@ describe('Payment with card', function () {
     return await $(`//*[contains(@resource-id,"${id}")]`);
   }
 
+  async function clickOn(finder: Promise<WebdriverIO.Element>) {
+    const el = await finder;
+    await el.click();
+  }
+
+  async function fillIn(finder: Promise<WebdriverIO.Element>, value: string) {
+    const el = await finder;
+    await el.setValue(value);
+  }
+
   before(dismissDevDialog);
 
   beforeEach(launchApp);
@@ -51,57 +61,35 @@ describe('Payment with card', function () {
     }
   });
 
-  it('happy path', async () => {
-    const link = await findElementByText("Card");
-    await link.click();
+  it("Happy path", async () => {
+    await clickOn(findElementByText("Card"));
+    await fillIn(findElementByText("Name"), "Saul Goodman");
+    await fillIn(findElementByResourceId("card_number_edit_text"), "4242424242424242");
 
-    const name = await findElementByText("Name");
-    await name.setValue('Saul Goodman');
+    await fillIn(findElementByResourceId("expiry_date_edit_text"), "12/25");
+    await fillIn(findElementByResourceId("cvc_edit_text"), "123");
 
-    const cardNumberEdit = await findElementByResourceId("card_number_edit_text");
-    await cardNumberEdit.setValue('4242424242424242');
+    await fillIn(findElementByResourceId("postal_code_edit_text"), "1000");
 
-    const expiryDateEdit = await findElementByResourceId("expiry_date_edit_text");
-    await expiryDateEdit.setValue('12/22');
+    await clickOn(findElementByText("PAY"));
 
-    const CvCEdit = await findElementByResourceId("cvc_edit_text");
-    await CvCEdit.setValue('123');
-
-    const PostalCodeEdit = await findElementByResourceId("postal_code_edit_text");
-    await PostalCodeEdit.setValue('1000');
-
-    const payButton = await findElementByText("PAY");
-    await payButton.click();
-
-    const dialog = await findElementByText("The payment was confirmed successfully");
-    expect(dialog).toBeDisplayed();
-    await (await findElementByText("OK")).click();
+    expect(await findElementByText("The payment was confirmed successfully")).toBeDisplayed();
+    await clickOn(findElementByText("OK"));
   });
 
-  it('failure path', async () => {
-    const link = await findElementByText("Card");
-    await link.click();
+  it("Failure path", async () => {
+    await clickOn(findElementByText("Card"));
+    await fillIn(findElementByText("Name"), "Saul Goodman");
+    await fillIn(findElementByResourceId("card_number_edit_text"), "4000000000000101");
 
-    const name = await findElementByText("Name");
-    await name.setValue('Saul Goodman');
+    await fillIn(findElementByResourceId("expiry_date_edit_text"), "12/25");
+    await fillIn(findElementByResourceId("cvc_edit_text"), "123");
 
-    const cardNumberEdit = await findElementByResourceId("card_number_edit_text");
-    await cardNumberEdit.setValue('4000000000000101');
+    await fillIn(findElementByResourceId("postal_code_edit_text"), "1000");
 
-    const expiryDateEdit = await findElementByResourceId("expiry_date_edit_text");
-    await expiryDateEdit.setValue('12/22');
+    await clickOn(findElementByText("PAY"));
 
-    const CvCEdit = await findElementByResourceId("cvc_edit_text");
-    await CvCEdit.setValue('123');
-
-    const PostalCodeEdit = await findElementByResourceId("postal_code_edit_text");
-    await PostalCodeEdit.setValue('1000');
-
-    const payButton = await findElementByText("PAY");
-    await payButton.click();
-
-    const dialog = await findElementByText("Error code:");
-    expect(dialog).toBeDisplayed();
-    await (await findElementByText("OK")).click();
+    expect(await findElementByText("Error code:")).toBeDisplayed();
+    await clickOn(findElementByText("OK"));
   });
 });
