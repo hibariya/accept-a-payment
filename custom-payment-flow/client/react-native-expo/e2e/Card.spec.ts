@@ -7,8 +7,6 @@ describe('Payment with card', function () {
   }
 
   async function dismissDevDialog(retry = 3) {
-    console.log(`dismissDevDialog(retry = ${retry});`);
-
     try {
       await launchApp();
 

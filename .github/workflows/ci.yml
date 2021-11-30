@@ -225,6 +225,6 @@ jobs:
         if: ${{ failure() }}
         uses: actions/upload-artifact@v2
         with:
-          name: screenshots
+          name: react-native-android-screenshots
           path: |
             custom-payment-flow/client/react-native-expo/tmp/screenshots
