@@ -33,11 +33,11 @@ describe('Payment with card', function () {
     );
   }
 
-  async function findElementByText(text: string) {
+  async function elementByText(text: string) {
     return await $(`android=new UiSelector().text("${text}")`);
   }
 
-  async function findElementByResourceId(id: string) {
+  async function elementByResourceId(id: string) {
     return await $(`//*[contains(@resource-id,"${id}")]`);
   }
 
@@ -62,34 +62,34 @@ describe('Payment with card', function () {
   });
 
   it("Happy path", async () => {
-    await clickOn(findElementByText("Card"));
-    await fillIn(findElementByText("Name"), "Saul Goodman");
-    await fillIn(findElementByResourceId("card_number_edit_text"), "4242424242424242");
+    await clickOn(elementByText("Card"));
+    await fillIn(elementByText("Name"), "Saul Goodman");
+    await fillIn(elementByResourceId("card_number_edit_text"), "4242424242424242");
 
-    await fillIn(findElementByResourceId("expiry_date_edit_text"), "12/25");
-    await fillIn(findElementByResourceId("cvc_edit_text"), "123");
+    await fillIn(elementByResourceId("expiry_date_edit_text"), "12/25");
+    await fillIn(elementByResourceId("cvc_edit_text"), "123");
 
-    await fillIn(findElementByResourceId("postal_code_edit_text"), "1000");
+    await fillIn(elementByResourceId("postal_code_edit_text"), "1000");
 
-    await clickOn(findElementByText("PAY"));
+    await clickOn(elementByText("PAY"));
 
-    expect(await findElementByText("The payment was confirmed successfully")).toBeDisplayed();
-    await clickOn(findElementByText("OK"));
+    expect(await elementByText("The payment was confirmed successfully")).toBeDisplayed();
+    await clickOn(elementByText("OK"));
   });
 
   it("Failure path", async () => {
-    await clickOn(findElementByText("Card"));
-    await fillIn(findElementByText("Name"), "Saul Goodman");
-    await fillIn(findElementByResourceId("card_number_edit_text"), "4000000000000101");
+    await clickOn(elementByText("Card"));
+    await fillIn(elementByText("Name"), "Saul Goodman");
+    await fillIn(elementByResourceId("card_number_edit_text"), "4000000000000101");
 
-    await fillIn(findElementByResourceId("expiry_date_edit_text"), "12/25");
-    await fillIn(findElementByResourceId("cvc_edit_text"), "123");
+    await fillIn(elementByResourceId("expiry_date_edit_text"), "12/25");
+    await fillIn(elementByResourceId("cvc_edit_text"), "123");
 
-    await fillIn(findElementByResourceId("postal_code_edit_text"), "1000");
+    await fillIn(elementByResourceId("postal_code_edit_text"), "1000");
 
-    await clickOn(findElementByText("PAY"));
+    await clickOn(elementByText("PAY"));
 
-    expect(await findElementByText("Error code:")).toBeDisplayed();
-    await clickOn(findElementByText("OK"));
+    expect(await elementByText("Error code:")).toBeDisplayed();
+    await clickOn(elementByText("OK"));
   });
 });
