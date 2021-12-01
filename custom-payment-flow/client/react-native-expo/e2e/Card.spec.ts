@@ -6,7 +6,7 @@ describe('Payment with card', function () {
     await browser.execute('mobile:deepLink', { url: 'exp://127.0.0.1:19000', package: pkg });
   }
 
-  async function dismissDevDialog(retry = 3) {
+  async function dismissDevDialog(retry = 5) {
     try {
       await launchApp();
 
