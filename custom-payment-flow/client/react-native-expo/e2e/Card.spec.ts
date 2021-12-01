@@ -1,5 +1,6 @@
 describe('Payment with card', function () {
   async function launchApp() {
+    console.log('================ launching app');
     const pkg = 'host.exp.exponent';
     const activity = '.experience.HomeActivity';
     await browser.startActivity(pkg, activity);
@@ -8,6 +9,7 @@ describe('Payment with card', function () {
 
   // FIXME: This is unnecessary if we can pass a boolean extra value EXKernelDisableNuxDefaultsKey to the app
   async function dismissDevDialog(retry = 5) {
+    console.log(`================ dismissing dev dialog (retry = ${retry})`);
     try {
       await launchApp();
 
@@ -25,6 +27,7 @@ describe('Payment with card', function () {
   }
 
   async function takeScreenshot(name: string) {
+    console.log(`================ taking screenshot (${name})`);
     require('fs').writeFileSync(
       `tmp/screenshots/${name}.png`,
       Buffer.from(await browser.takeScreenshot(), 'base64'),
@@ -59,12 +62,13 @@ describe('Payment with card', function () {
   });
 
   afterEach(async function () {
-    if (this.currentTest && this.currentTest.isPassed) {
+    if (this.currentTest && !this.currentTest.isPassed) {
       await takeScreenshot(this.currentTest.fullTitle().replace(/\s+/g, '_'));
     }
   });
 
   it("Happy path", async () => {
+    console.log('================ Happy path');
     await clickOn(elementByText("Card"));
     await fillIn(elementByText("Name"), "Saul Goodman");
     await fillIn(elementByResourceId("card_number_edit_text"), "4242424242424242");
@@ -81,6 +85,7 @@ describe('Payment with card', function () {
   });
 
   it("Failure path", async () => {
+    console.log('================ Failure path');
     await clickOn(elementByText("Card"));
     await fillIn(elementByText("Name"), "Saul Goodman");
     await fillIn(elementByResourceId("card_number_edit_text"), "4000000000000101");
