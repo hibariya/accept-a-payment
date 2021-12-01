@@ -6,6 +6,7 @@ describe('Payment with card', function () {
     await browser.execute('mobile:deepLink', { url: 'exp://127.0.0.1:19000', package: pkg });
   }
 
+  // FIXME: This is unnecessary if we can pass a boolean extra value EXKernelDisableNuxDefaultsKey to the app
   async function dismissDevDialog(retry = 5) {
     try {
       await launchApp();
