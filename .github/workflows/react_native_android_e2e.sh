@@ -29,5 +29,6 @@ npm install -g expo-cli
 npm install
 export REACT_NATIVE_PACKAGER_HOSTNAME=127.0.0.1
 (npm run start -- --android --no-dev &) &
+sleep 30
 
 npm run wdio -- wdio.android.ts

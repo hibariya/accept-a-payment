@@ -16,6 +16,7 @@ describe('Payment with card', function () {
       const dialogCloseButton = await $(`android=new UiSelector().text("Got it")`);
       await dialogCloseButton.click();
       await $(`android=new UiSelector().text("react-native-expo")`);
+      await browser.pause(1000);
     } catch (e) {
       if (retry > 0) {
         await dismissDevDialog(retry - 1);
