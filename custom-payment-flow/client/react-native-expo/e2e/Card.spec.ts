@@ -49,9 +49,13 @@ describe('Payment with card', function () {
     await el.setValue(value);
   }
 
-  before(dismissDevDialog);
+  before(async () => {
+    await dismissDevDialog();
+  });
 
-  beforeEach(launchApp);
+  beforeEach(async () => {
+    await launchApp();
+  });
 
   afterEach(async function () {
     if (this.currentTest && this.currentTest.isPassed) {
