@@ -26,7 +26,7 @@ RSpec.describe 'Custom payment flow', type: :system do
     visit app_url('/')
 
     click_on 'Buy'
-    click_on 'Previous page'
+    click_on 'Back to Stripe Samples CI'
 
     expect(page).to have_content 'Your payment was canceled'
   end
