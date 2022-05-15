@@ -60,7 +60,6 @@ jobs:
           configure_docker_compose_for_integration "${{ matrix.target.sample }}" "${{ matrix.runtime.server_type }}" ../../client/html "${{ matrix.runtime.server_image }}"
 
           docker-compose run --rm -T web npm install -g npm
-          docker-compose exec -T runner bundle exec rspec spec/${{ matrix.target.tests }}
           docker-compose up -d && wait_web_server
           docker-compose exec -T runner bundle exec rspec spec/${{ matrix.target.tests }}
 
