@@ -275,3 +275,13 @@ jobs:
                      CODE_SIGNING_REQUIRED="NO" \
                      CODE_SIGN_ENTITLEMENTS="" \
                      CODE_SIGNING_ALLOWED="NO"
+
+  complete_ci_successfully:
+    needs:
+      - server_test
+      - e2e_test
+      - android_build
+      - ios_build
+    runs-on: ubuntu-latest
+    steps:
+      - run: exit
