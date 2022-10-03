@@ -1,8 +1,6 @@
 name: CI
 on:
   push:
-  pull_request:
-    types: [opened]
 
 env:
   STRIPE_PUBLISHABLE_KEY: ${{ secrets.TEST_STRIPE_PUBLISHABLE_KEY }}
