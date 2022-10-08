@@ -21,14 +21,11 @@ jobs:
     steps:
       - uses: actions/checkout@v1
 
-      - run: echo "${{ github.event.workflow_run.head_sha }}"
-      - run: echo "${{ github.event.workflow_run }}"
-      - run: echo "${{ github.event.workflow }}"
-
       - uses: jwalton/gh-find-current-pr@v1
         id: findPr
         with:
           state: open
+          sha: ${{ github.event.workflow_run }}
 
       - run: echo "Your PR is ${PR}"
         if: success() && steps.findPr.outputs.number
@@ -38,5 +35,3 @@ jobs:
       - name: Enable auto-merge
         if: success() && steps.findPr.outputs.number
         run: gh pr merge --auto --merge "${{ steps.findPr.outputs.pr }}"
-        env:
-          PR_URL: ${{github.event.pull_request.html_url}}
