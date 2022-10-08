@@ -21,7 +21,9 @@ jobs:
     steps:
       - uses: actions/checkout@v1
 
-      - run: echo "${{ github.event.pull_request.head.sha || github.sha }}
+      - run: echo "$GITHUB_SHA"
+        env:
+          GITHUB_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
 
       - uses: jwalton/gh-find-current-pr@v1
         id: findPr
