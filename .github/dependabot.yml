@@ -9,71 +9,84 @@ updates:
   - package-ecosystem: 'bundler'
     directory: '/custom-payment-flow/server/ruby/'
     schedule:
-      interval: 'daily'
+      interval: 'weekly'
+      day: 'thursday'
   - package-ecosystem: 'bundler'
     directory: '/prebuilt-checkout-page/server/ruby/'
     schedule:
-      interval: 'daily'
+      interval: 'weekly'
+      day: 'thursday'
 
   # python dependencies
   - package-ecosystem: 'pip'
     directory: '/custom-payment-flow/server/python/'
     schedule:
-      interval: 'daily'
+      interval: 'weekly'
+      day: 'thursday'
   - package-ecosystem: 'pip'
     directory: '/prebuilt-checkout-page/server/python/'
     schedule:
-      interval: 'daily'
+      interval: 'weekly'
+      day: 'thursday'
 
   # php dependencies
   - package-ecosystem: 'composer'
     directory: '/custom-payment-flow/server/php/'
     schedule:
-      interval: 'daily'
+      interval: 'weekly'
+      day: 'thursday'
   - package-ecosystem: 'composer'
     directory: '/prebuilt-checkout-page/server/php/'
     schedule:
-      interval: 'daily'
+      interval: 'weekly'
+      day: 'thursday'
 
   # node dependencies
   - package-ecosystem: 'npm'
     directory: '/custom-payment-flow/server/node/'
     schedule:
-      interval: 'daily'
+      interval: 'weekly'
+      day: 'thursday'
   - package-ecosystem: 'npm'
     directory: '/custom-payment-flow/server/node-typescript/'
     schedule:
-      interval: 'daily'
+      interval: 'weekly'
+      day: 'thursday'
   - package-ecosystem: 'npm'
     directory: '/prebuilt-checkout-page/server/node/'
     schedule:
-      interval: 'daily'
+      interval: 'weekly'
+      day: 'thursday'
   - package-ecosystem: 'npm'
     directory: '/custom-payment-flow/client/react-cra/'
     schedule:
-      interval: 'daily'
+      interval: 'weekly'
+      day: 'thursday'
   - package-ecosystem: 'npm'
     directory: '/payment-element/client/react-cra/'
     schedule:
-      interval: 'daily'
+      interval: 'weekly'
+      day: 'thursday'
   - package-ecosystem: 'npm'
     directory: '/prebuilt-checkout-page/client/react-cra/'
     schedule:
-      interval: 'daily'
+      interval: 'weekly'
+      day: 'thursday'
   - package-ecosystem: 'npm'
     directory: '/prebuilt-checkout-page/client/vue-cva/'
     schedule:
-      interval: 'daily'
+      interval: 'weekly'
+      day: 'thursday'
 
   # go dependencies
   - package-ecosystem: 'gomod'
     directory: '/custom-payment-flow/server/go/'
     schedule:
-      interval: 'daily'
+      interval: 'weekly'
   - package-ecosystem: 'gomod'
     directory: '/prebuilt-checkout-page/server/go/'
     schedule:
-      interval: 'daily'
+      interval: 'weekly'
 
   # java dependencies
   - package-ecosystem: 'maven'
