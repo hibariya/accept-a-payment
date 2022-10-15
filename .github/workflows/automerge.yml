@@ -30,5 +30,5 @@ jobs:
       - name: Enable auto-merge
         if: success() && steps.findPr.outputs.number
         run: |
-          echo "Merging #${{ steps.findPr.outputs.pr }}" >> $GITHUB_STEP_SUMMARY
           gh pr merge --auto --merge "${{ steps.findPr.outputs.pr }}"
+          echo "Merging [#${{ steps.findPr.outputs.pr }}](${{ github.event.repository.url }}/pulls/${{ steps.findPr.outputs.pr }})" >> $GITHUB_STEP_SUMMARY
