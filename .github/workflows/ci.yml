@@ -25,10 +25,9 @@ jobs:
         run: |
           files=$(git diff --name-only --merge-base origin/main)
 
-          # NOTE: Use %-encoding to save the multiline string
-          files="${files//'%'/'%25'}"
-          files="${files//$'\n'/'%0A'}"
-          files="${files//$'\r'/'%0D'}"
+          # NOTE: Eliminate CR/LF to make it easier to store
+          files="${files//$'\n'/' '}"
+          files="${files//$'\r'/' '}"
 
           echo "files=$files" >> $GITHUB_OUTPUT
 
@@ -87,7 +86,7 @@ jobs:
           prefix="${{ matrix.target.sample }}/server/${{ matrix.runtime.server_type }}"
 
           if [ "${{ github.ref }}" = "ref/heads/main" ] || \
-            [ $(echo "${{ needs.changed_files.outputs.files }}" | grep -E "^${prefix}") ]
+            [ $(echo "${{ needs.changed_files.outputs.files }}" | grep -E " ${prefix}") ]
           then echo 'running=true' >> $GITHUB_OUTPUT
           fi
 
@@ -168,7 +167,7 @@ jobs:
           prefix="${{ matrix.target.sample }}/client/${{ matrix.implementation.client_type }}"
 
           if [ "${{ github.ref }}" = "ref/heads/main" ] || \
-            [ $(echo "${{ needs.changed_files.outputs.files }}" | grep -E "^${prefix}") ]
+            [ $(echo "${{ needs.changed_files.outputs.files }}" | grep -E " ${prefix}") ]
           then echo 'running=true' >> $GITHUB_OUTPUT
           fi
 
@@ -231,7 +230,7 @@ jobs:
           prefix="custom-payment-flow/client/android-kotlin"
 
           if [ "${{ github.ref }}" = "ref/heads/main" ] && \
-            [ $(echo "${{ needs.changed_files.outputs.files }}" | grep -E "^${prefix}") ]
+            [ $(echo "${{ needs.changed_files.outputs.files }}" | grep -E " ${prefix}") ]
           then echo 'running=true' >> $GITHUB_OUTPUT
           fi
 
@@ -253,7 +252,7 @@ jobs:
           prefix="custom-payment-flow/client/ios-swiftui"
 
           if [ "${{ github.ref }}" = "ref/heads/main" ] && \
-            [ $(echo "${{ needs.changed_files.outputs.files }}" | grep -E "^${prefix}") ]
+            [ $(echo "${{ needs.changed_files.outputs.files }}" | grep -E " ${prefix}") ]
           then echo 'running=true' >> $GITHUB_OUTPUT
           fi
 
