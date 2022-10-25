@@ -30,7 +30,7 @@ jobs:
           files="${files//$'\n'/'%0A'}"
           files="${files//$'\r'/'%0D'}"
 
-          echo "::set-output name=files::$files"
+          echo "files=$files" >> $GITHUB_OUTPUT
 
   server_test:
     needs: changed_files
@@ -88,7 +88,7 @@ jobs:
 
           if [ "${{ github.ref }}" = "ref/heads/main" ] || \
             [ $(echo "${{ needs.changed_files.outputs.files }}" | grep -E "^${prefix}") ]
-          then echo '::set-output name=running::true'
+          then echo 'running=true' >> $GITHUB_OUTPUT
           fi
 
       - uses: actions/checkout@v3
@@ -169,7 +169,7 @@ jobs:
 
           if [ "${{ github.ref }}" = "ref/heads/main" ] || \
             [ $(echo "${{ needs.changed_files.outputs.files }}" | grep -E "^${prefix}") ]
-          then echo '::set-output name=running::true'
+          then echo 'running=true' >> $GITHUB_OUTPUT
           fi
 
       - uses: actions/checkout@v3
@@ -232,7 +232,7 @@ jobs:
 
           if [ "${{ github.ref }}" = "ref/heads/main" ] && \
             [ $(echo "${{ needs.changed_files.outputs.files }}" | grep -E "^${prefix}") ]
-          then echo '::set-output name=running::true'
+          then echo 'running=true' >> $GITHUB_OUTPUT
           fi
 
       - uses: actions/checkout@v3
@@ -254,7 +254,7 @@ jobs:
 
           if [ "${{ github.ref }}" = "ref/heads/main" ] && \
             [ $(echo "${{ needs.changed_files.outputs.files }}" | grep -E "^${prefix}") ]
-          then echo '::set-output name=running::true'
+          then echo 'running=true' >> $GITHUB_OUTPUT
           fi
 
       - uses: actions/checkout@v3
