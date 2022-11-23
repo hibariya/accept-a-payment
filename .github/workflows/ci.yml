@@ -1,6 +1,7 @@
 name: CI
 on:
-  push:
+  - push
+  - pull_request
 
 env:
   STRIPE_PUBLISHABLE_KEY: ${{ secrets.TEST_STRIPE_PUBLISHABLE_KEY }}
@@ -352,7 +353,7 @@ jobs:
                      CODE_SIGNING_ALLOWED="NO"
 
   auto-merge-dependabot-prs:
-    if: ${{ github.actor == 'dependabot[bot]' }}
+    if: ${{ github.event.pull_request && github.actor == 'dependabot[bot]' }}
     needs:
       - server_test
       - e2e_test
