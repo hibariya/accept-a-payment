@@ -39,22 +39,22 @@ try {
     <script src="https://js.stripe.com/v3/"></script>
     <script src="./utils.js"></script>
     <script>
-        
+
         document.addEventListener('DOMContentLoaded', async () => {
             const stripe = Stripe('<?= $_ENV["STRIPE_PUBLISHABLE_KEY"]; ?>', {
-                apiVersion: '2020-08-27',
+                apiVersion: '2022-08-01',
             });
-        
+
             // When the form is submitted...
             var form = document.getElementById('payment-form');
             form.addEventListener('submit', async (e) => {
                 e.preventDefault();
                 form.querySelector('button').disabled = true;
-                addMessage(`Client secret returned.`);            
+                addMessage(`Client secret returned.`);
                 const nameInput = document.querySelector('#name');
                 const emailInput = document.querySelector('#email');
                 const phonelInput = document.querySelector('#phone');
-            
+
                 // Confirm the payment given the clientSecret from the payment intent that
                 // was just created on the server.
                 let { error, paymentIntent } = await stripe.confirmKonbiniPayment(
@@ -73,15 +73,15 @@ try {
                         },
                     }
                 );
-            
+
                 if (error) {
                     addMessage(error.message);
                     form.querySelector('button').disabled = false;
                     return;
                 }
-            
+
                 addMessage(`Payment ${paymentIntent.status}: ${paymentIntent.id}`);
-            
+
                 // When passing {any_prefix}succeed_immediately@{any_suffix}
                 // as the email address in the billing details, the payment
                 // intent will succeed after 3 seconds. We set this timeout

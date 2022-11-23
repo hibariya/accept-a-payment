@@ -9,12 +9,12 @@ document.addEventListener('DOMContentLoaded', async () => {
       );
       alert('Please set your Stripe publishable API key in the .env file');
     }
-  
+
     const stripe = Stripe(publishableKey, {
       betas: ['konbini_pm_beta_1'],
-      apiVersion: '2020-08-27; konbini_beta=v1',
+      apiVersion: '2022-08-01; konbini_beta=v1',
     });
-  
+
     // When the form is submitted...
     var form = document.getElementById('payment-form');
     form.addEventListener('submit', async (e) => {
@@ -37,18 +37,18 @@ document.addEventListener('DOMContentLoaded', async () => {
           },
         }),
       }).then((r) => r.json());
-  
+
       if (resp.error) {
         addMessage(resp.error.message);
         return;
       }
-  
+
       addMessage(`Client secret returned.`);
-  
+
       const nameInput = document.querySelector('#name');
       const emailInput = document.querySelector('#email');
       const phonelInput = document.querySelector('#phone');
-  
+
       // Confirm the payment given the clientSecret from the payment intent that
       // was just created on the server.
       let { error, paymentIntent } = await stripe.confirmKonbiniPayment(
@@ -67,14 +67,14 @@ document.addEventListener('DOMContentLoaded', async () => {
           },
         }
       );
-  
+
       if (error) {
         addMessage(error.message);
         return;
       }
-  
+
       addMessage(`Payment ${paymentIntent.status}: ${paymentIntent.id}`);
-  
+
       // When passing {any_prefix}succeed_immediately@{any_suffix}
       // as the email address in the billing details, the payment
       // intent will succeed after 3 seconds. We set this timeout

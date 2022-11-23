@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     alert('Please set your Stripe publishable API key in the .env file');
   }
   const stripe = Stripe(publishableKey, {
-    apiVersion: '2020-08-27',
+    apiVersion: '2022-08-01',
   });
 
   // When the form is submitted...

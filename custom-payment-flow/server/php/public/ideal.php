@@ -36,7 +36,7 @@ try {
     <script>
       document.addEventListener('DOMContentLoaded', async () => {
         const stripe = Stripe('<?= $_ENV["STRIPE_PUBLISHABLE_KEY"]; ?>', {
-          apiVersion: '2020-08-27',
+          apiVersion: '2022-08-01',
         });
         const elements = stripe.elements();
         const idealBank = elements.create('idealBank');

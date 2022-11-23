@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   }
 
   const stripe = Stripe(publishableKey, {
-    apiVersion: '2020-08-27',
+    apiVersion: '2022-08-01',
   });
 
   // When the form is submitted...
@@ -49,7 +49,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     const cityInput = document.querySelector('#city');
     const postalCodeInput = document.querySelector('#postal_code');
     const line1Input = document.querySelector('#line1');
-    
+
     // Confirm the payment given the clientSecret from the payment intent that
     // was just created on the server.
     const {error: stripeError, paymentIntent} = await stripe.confirmBoletoPayment(

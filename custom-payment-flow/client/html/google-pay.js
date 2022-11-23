@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   // 1. Initialize Stripe
   const stripe = Stripe(publishableKey, {
-    apiVersion: '2020-08-27',
+    apiVersion: '2022-08-01',
   });
 
   // 2. Create a payment request object

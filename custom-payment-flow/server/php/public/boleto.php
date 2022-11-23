@@ -36,7 +36,7 @@ try {
     <script>
       document.addEventListener('DOMContentLoaded', async () => {
         const stripe = Stripe('<?= $_ENV["STRIPE_PUBLISHABLE_KEY"]; ?>', {
-          apiVersion: '2020-08-27',
+          apiVersion: '2022-08-01',
         });
 
         const paymentForm = document.querySelector('#payment-form');
@@ -90,7 +90,7 @@ try {
       <h1>Boleto</h1>
 
       <form id="payment-form">
-        
+
         <label for="name">
           Name
         </label>
