@@ -2,12 +2,11 @@ name: CI
 on:
   push:
     branches:
-      - main
-      # - '**'
-      # - '!dependabot/**'
+      - '**'
+      - '!dependabot/**'
   pull_request:
-    branches:
-      - 'dependabot/**'
+    # branches:
+    #   - 'dependabot/**'
 
 env:
   STRIPE_PUBLISHABLE_KEY: ${{ secrets.TEST_STRIPE_PUBLISHABLE_KEY }}
