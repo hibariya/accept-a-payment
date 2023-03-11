@@ -19,6 +19,7 @@ env:
     kevinpeters-stripe
     paulasjes-stripe
     thorsten-stripe
+    hibariya
 
 concurrency:
   group: ci-${{ github.ref }}
