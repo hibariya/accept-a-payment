@@ -28,6 +28,10 @@ jobs:
     steps:
       - name: 'check if the triggering actor is one of the maintainers'
         run: |
+          if [[ "${{ github.ref }}" = "refs/heads/main" ]]; then
+            exit # safe to run tests with write permission
+          fi
+
           while read item; do
             if [[ "$item" == "${{ github.triggering_actor }}" ]]; then
               exit # safe to run tests with write permission
