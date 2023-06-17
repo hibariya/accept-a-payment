@@ -17,6 +17,7 @@ env:
     hideokamoto-stripe
     kevinpeters-stripe
     paulasjes-stripe
+    hibariya
 
 concurrency:
   group: ci-${{ github.event.pull_request.head.ref || github.ref }}
