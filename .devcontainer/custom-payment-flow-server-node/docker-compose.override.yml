@@ -1,12 +1,12 @@
 services:
   runner:
     volumes:
-      - ..:/work
+      - ../..:/work
 
   web:
     volumes:
-      - ..:/work
+      - ../..:/work
 
   frontend:
     volumes:
-      - ..:/work
+      - ../..:/work
