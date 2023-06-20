@@ -1,5 +1,5 @@
 {
-  "name": "accept-a-payment",
+  "name": "custom-payment-flow/server/ruby",
   "dockerComposeFile": [
     "docker-compose.yml",
     "docker-compose.override.yml"
