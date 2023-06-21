@@ -1,8 +1,8 @@
 #!/bin/bash -e
 
-if [[ "$#" -eq "0" ]]; then
-  chmod 700 ~/.ssh
+chmod 700 ~/.ssh
 
+if [[ "$#" -eq "0" ]]; then
   npm install
   exec npm start
 else

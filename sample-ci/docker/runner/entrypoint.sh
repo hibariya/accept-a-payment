@@ -11,7 +11,6 @@ if [[ "$#" -eq "0" ]]; then
 
   mkdir -p ~/.ssh
   chmod 700 ~/.ssh
-  # chmod 600 ~/.ssh/authorized_keys
 
   bundle install -j4
   exec tail -f /dev/null

@@ -7,10 +7,10 @@ services:
 
   web:
     env_file: ../.env
+    command: ['tail', '-f', '/dev/null']
     volumes:
       - ../..:/work
       - ../.ssh:/root/.ssh
-      # - ../../id_rsa:/root/.ssh/id_rsa
 
   frontend:
     env_file: ../.env
