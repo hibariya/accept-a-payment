@@ -2,12 +2,13 @@ services:
   runner:
     volumes:
       - ../..:/work
-      - ../../id_rsa.pub:/root/.ssh/authorized_keys
+      - ../.ssh:/root/.ssh
 
   web:
     volumes:
       - ../..:/work
-      - ../../id_rsa:/root/.ssh/id_rsa
+      - ../.ssh:/root/.ssh
+      # - ../../id_rsa:/root/.ssh/id_rsa
 
   frontend:
     volumes:

@@ -2,10 +2,13 @@ services:
   runner:
     volumes:
       - ../..:/work
+      - ../.ssh:/root/.ssh
 
   web:
     volumes:
       - ../..:/work
+      - ../.ssh:/root/.ssh
+      # - ../../id_rsa:/root/.ssh/id_rsa
 
   frontend:
     volumes:
