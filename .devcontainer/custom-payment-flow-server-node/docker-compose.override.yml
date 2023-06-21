@@ -1,15 +1,18 @@
 services:
   runner:
+    env_file: ../.env
     volumes:
       - ../..:/work
       - ../.ssh:/root/.ssh
 
   web:
+    env_file: ../.env
     volumes:
       - ../..:/work
       - ../.ssh:/root/.ssh
       # - ../../id_rsa:/root/.ssh/id_rsa
 
   frontend:
+    env_file: ../.env
     volumes:
       - ../..:/work
