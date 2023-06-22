@@ -4,6 +4,7 @@
     "docker-compose.yml"
   ],
   "service": "web",
+  "workspaceFolder": "/work/custom-payment-flow/server/ruby",
   "hostRequirements": {
     "cpus": 2,
     "memory": "4gb"
