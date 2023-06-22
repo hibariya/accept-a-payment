@@ -1,49 +1,50 @@
 services:
   runner:
-    # platform: amd64
     image: ruby:3.0
     working_dir: /work
     init: true
     entrypoint: ['/work/sample-ci/docker/runner/entrypoint.sh']
-    # env_file: .env
+    env_file:
+      - ../.env
     environment:
       - STRIPE_PUBLISHABLE_KEY=${STRIPE_PUBLISHABLE_KEY}
       - STRIPE_SECRET_KEY=${STRIPE_SECRET_KEY}
       - SERVER_URL=${SERVER_URL:-http://web:4242}
       - BUNDLE_JOBS=5
     volumes:
-      - work:/work
       - gem:/usr/local/bundle
+      - ../..:/work
+      - ../.ssh:/root/.ssh
 
   stripe:
-    # platform: amd64
     image: stripe/stripe-cli:v1.5.3
     init: true
     entrypoint: ['/bin/ash']
     command: ['-c', '/bin/stripe --api-key=$STRIPE_SECRET_KEY listen --forward-to http://web:4242/webhook']
-    # env_file: .env
+    env_file:
+      - ../.env
     environment:
       - STRIPE_PUBLISHABLE_KEY=${STRIPE_PUBLISHABLE_KEY}
       - STRIPE_SECRET_KEY=${STRIPE_SECRET_KEY}
 
   web:
-    # platform: amd64
     image: "node"
     working_dir: /work/custom-payment-flow/server/node
     init: true
     entrypoint: ['/work/sample-ci/docker/node/entrypoint.sh']
     ports: ['4242:4242']
-    # env_file: .env
+    env_file:
+      - ../.env
     environment:
       - STRIPE_PUBLISHABLE_KEY=${STRIPE_PUBLISHABLE_KEY}
       - STRIPE_SECRET_KEY=${STRIPE_SECRET_KEY}
       - STRIPE_WEBHOOK_SECRET=${STRIPE_WEBHOOK_SECRET}
       - STATIC_DIR=../../client/html
     volumes:
-      - work:/work
+      - ../..:/work
+      - ../.ssh:/root/.ssh
 
   frontend:
-    # platform: amd64
     profiles: ['frontend']
     build:
       context: .
@@ -53,12 +54,15 @@ services:
     init: true
     entrypoint: ['/work/sample-ci/docker/html/entrypoint.sh']
     ports: ['3000:3000']
+    env_file:
+      - ../.env
     environment:
       - HOST=0.0.0.0
       - DANGEROUSLY_DISABLE_HOST_CHECK=true
       - SERVER_URL=${SERVER_URL:-http://web:4242}
     volumes:
-      - work:/work
+      - ../..:/work
+      - ../.ssh:/root/.ssh
 
   selenium:
     profiles: ['e2e', 'frontend']
