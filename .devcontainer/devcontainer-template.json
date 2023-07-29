@@ -1,10 +1,10 @@
 {
-  "name": "custom-payment-flow/server/ruby",
+  "name": "${WORKING_DIR}",
   "dockerComposeFile": [
     "docker-compose.yml"
   ],
   "service": "web",
-  "workspaceFolder": "/work/custom-payment-flow/server/ruby",
+  "workspaceFolder": "/work/${WORKING_DIR}",
   "hostRequirements": {
     "cpus": 1,
     "memory": "1gb"

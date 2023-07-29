@@ -1,0 +1,17 @@
+services:
+  runner:
+    command: ['tail', '-f', '/dev/null']
+    env_file: ../.env
+    volumes:
+      - ../..:/work
+      - ../.ssh:/root/.ssh
+
+  stripe:
+    env_file: ../.env
+
+  web:
+    command: ['tail', '-f', '/dev/null']
+    env_file: ../.env
+    volumes:
+      - ../..:/work
+      - ../.ssh:/root/.ssh
