@@ -10,7 +10,7 @@ services:
     env_file: ../.env
 
   web:
-    entrypoint: ""
+    entrypoint: ['/work/.devcontainer/web-entrypoint.sh']
     command: ['tail', '-f', '/dev/null']
     env_file: ../.env
     volumes:
