@@ -39,6 +39,30 @@ services:
     volumes:
       - work:/work
 
+  frontend:
+    profiles: ['frontend']
+    build:
+      context: .
+      dockerfile: sample-ci/docker/html/Dockerfile
+    stdin_open: true
+    working_dir: /work/custom-payment-flow/client/html
+    init: true
+    entrypoint: ['/work/sample-ci/docker/html/entrypoint.sh']
+    ports: ['3000:3000']
+    environment:
+      - HOST=0.0.0.0
+      - DANGEROUSLY_DISABLE_HOST_CHECK=true
+      - SERVER_URL=${SERVER_URL:-http://web:4242}
+    volumes:
+      - work:/work
+
+  selenium:
+    profiles: ['e2e', 'frontend']
+    image: selenium/standalone-chrome-debug:3.141
+    ports: ['5900:5900', '4444:4444']
+    environment:
+      - VNC_NO_PASSWORD='1'
+
 volumes:
   work:
   gem:
