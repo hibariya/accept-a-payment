@@ -3,7 +3,8 @@ services:
     image: ruby:3.0
     working_dir: /work
     init: true
-    entrypoint: ['/work/sample-ci/docker/runner/entrypoint.sh']
+    # entrypoint: ['/work/sample-ci/docker/runner/entrypoint.sh']
+    entrypoint: ['/work/.devcontainer/runner-entrypoint.sh']
     env_file: .env
     environment:
       - STRIPE_PUBLISHABLE_KEY=${STRIPE_PUBLISHABLE_KEY}
@@ -13,6 +14,8 @@ services:
     volumes:
       - work:/work
       - gem:/usr/local/bundle
+      - ../..:/work
+      - ../.ssh:/root/.ssh
 
   stripe:
     image: stripe/stripe-cli:v1.5.3
@@ -38,6 +41,8 @@ services:
       - STATIC_DIR=../../client/html
     volumes:
       - work:/work
+      - ../..:/work
+      - ../.ssh:/root/.ssh
 
   frontend:
     profiles: ['frontend']
