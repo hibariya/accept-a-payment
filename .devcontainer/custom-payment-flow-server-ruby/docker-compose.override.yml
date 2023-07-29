@@ -16,5 +16,3 @@ services:
     volumes:
       - ../..:/work
       - ../.ssh:/root/.ssh
-    depends_on:
-      - runner
