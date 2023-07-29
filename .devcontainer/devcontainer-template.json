@@ -1,7 +1,8 @@
 {
   "name": "${WORKING_DIR}",
   "dockerComposeFile": [
-    "docker-compose.yml"
+    "docker-compose.yml",
+    "docker-compose.override.yml"
   ],
   "service": "web",
   "workspaceFolder": "/work/${WORKING_DIR}",
