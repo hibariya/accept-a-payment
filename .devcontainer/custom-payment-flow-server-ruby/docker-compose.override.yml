@@ -1,7 +1,6 @@
 services:
   runner:
     entrypoint: ['/work/.devcontainer/runner-entrypoint.sh']
-    command: ['tail', '-f', '/dev/null']
     env_file: ../.env
     volumes:
       - ../..:/work
