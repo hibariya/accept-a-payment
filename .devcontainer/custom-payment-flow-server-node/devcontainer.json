@@ -1,13 +1,14 @@
 {
   "name": "custom-payment-flow/server/node",
   "dockerComposeFile": [
-    "docker-compose.yml"
+    "docker-compose.yml",
+    "docker-compose.override.yml"
   ],
   "service": "web",
   "workspaceFolder": "/work/custom-payment-flow/server/node",
   "hostRequirements": {
-    "cpus": 2,
-    "memory": "4gb"
+    "cpus": 1,
+    "memory": "1gb"
   },
   "forwardPorts": [4242],
   "portsAttributes": {
