@@ -4,10 +4,11 @@
     "docker-compose.yml",
     "docker-compose.override.yml"
   ],
-  "remoteEnv": {
-    "COMPOSE_PROFILES": "frontend"
-  },
   "service": "frontend",
+  "runServices": [
+    "runner",
+    "frontend"
+  ],
   "workspaceFolder": "/work/custom-payment-flow/client/react-cra",
   "hostRequirements": {
     "cpus": 1,
