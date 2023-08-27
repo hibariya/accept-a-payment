@@ -1,0 +1,27 @@
+{
+  "name": "custom-payment-flow/client/react-cra",
+  "dockerComposeFile": [
+    "docker-compose.yml",
+    "docker-compose.override.yml"
+  ],
+  "remoteEnv": {
+    "COMPOSE_PROFILES": "frontend"
+  },
+  "service": "frontend",
+  "workspaceFolder": "/work/custom-payment-flow/client/react-cra",
+  "hostRequirements": {
+    "cpus": 1,
+    "memory": "1gb"
+  },
+  "forwardPorts": [3000],
+  "portsAttributes": {
+    "3000": {
+      "label": "frontend",
+      "onAutoForward": "notify"
+    }
+  },
+  "otherPortsAttributes": {
+    "onAutoForward": "silent"
+  }
+}
+
