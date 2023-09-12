@@ -4,15 +4,16 @@
     "docker-compose.yml",
     "docker-compose.override.yml"
   ],
-  "service": "web",
+  "service": "${SERVICE}",
+  "runServices": ${RUN_SERVICES},
   "workspaceFolder": "/work/${WORKING_DIR}",
   "hostRequirements": {
     "cpus": 1,
     "memory": "1gb"
   },
-  "forwardPorts": [4242],
+  "forwardPorts": [${PORT}],
   "portsAttributes": {
-    "4242": {
+    "${PORT}": {
       "label": "web",
       "onAutoForward": "notify"
     }

@@ -35,17 +35,19 @@ services:
       - STRIPE_PUBLISHABLE_KEY=${STRIPE_PUBLISHABLE_KEY}
       - STRIPE_SECRET_KEY=${STRIPE_SECRET_KEY}
       - STRIPE_WEBHOOK_SECRET=${STRIPE_WEBHOOK_SECRET}
-      - STATIC_DIR=../../client/html
+      - STATIC_DIR=../../client/react-cra
     volumes:
       - work:/work
 
   frontend:
     profiles: ['frontend']
-    image: "node:lts"
+    build:
+      context: .
+      dockerfile: sample-ci/docker/react-cra/Dockerfile
     stdin_open: true
     working_dir: /work/custom-payment-flow/client/react-cra
     init: true
-    entrypoint: ['/work/sample-ci/docker/html/entrypoint.sh']
+    entrypoint: ['/work/sample-ci/docker/react-cra/entrypoint.sh']
     ports: ['3000:3000']
     environment:
       - HOST=0.0.0.0

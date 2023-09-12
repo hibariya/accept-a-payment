@@ -5,10 +5,7 @@
     "docker-compose.override.yml"
   ],
   "service": "frontend",
-  "runServices": [
-    "runner",
-    "frontend"
-  ],
+  "runServices": ["runner", "frontend"],
   "workspaceFolder": "/work/custom-payment-flow/client/react-cra",
   "hostRequirements": {
     "cpus": 1,
@@ -17,7 +14,7 @@
   "forwardPorts": [3000],
   "portsAttributes": {
     "3000": {
-      "label": "frontend",
+      "label": "web",
       "onAutoForward": "notify"
     }
   },
