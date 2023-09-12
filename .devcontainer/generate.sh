@@ -10,21 +10,17 @@ export SERVER_IMAGE=${4}
 if [ "$STATIC_DIR" = "../../client/html" ]
 then
   export WORKING_DIR="${SAMPLE}/server/${SERVER_TYPE}"
-  export SERVICE="web"
-  export RUN_SERVICES='["runner"]'
-  export PORT=4242
 else
+  export SERVER_TYPE="node"
+  export SERVER_IMAGE="node:lts"
   export WORKING_DIR="${SAMPLE}/client/$(basename "$STATIC_DIR")"
-  export SERVICE="frontend"
-  export RUN_SERVICES='["runner", "frontend"]'
-  export PORT=3000
 fi
 
 
 CONFIG_DIR=$(echo "$WORKING_DIR" | tr / -)
 mkdir -p "$CONFIG_DIR"
-cat devcontainer-template.json | envsubst '$WORKING_DIR $SERVICE $RUN_SERVICES $PORT' > "$CONFIG_DIR/devcontainer.json"
-cat docker-compose.override.yml | envsubst '$STATIC_DIR' > "$CONFIG_DIR/docker-compose.override.yml"
+cat devcontainer-template.json | envsubst '$WORKING_DIR' > "$CONFIG_DIR/devcontainer.json"
+cp docker-compose.override.yml "$CONFIG_DIR/docker-compose.override.yml"
 
 pushd "$CONFIG_DIR"
 ln -sF ../../sample-ci .
