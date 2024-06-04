@@ -239,7 +239,7 @@ jobs:
           docker-compose ps -a
           docker-compose --profile="${{ matrix.implementation.profile }}" logs web frontend
 
-          docker cp $(docker-compose ps -qa runner | head -1):/work/tmp .
+          docker cp $(docker-compose ps -qa runner | head -1):/work/tmp . || true
 
       - name: Upload capybara screenshots
         if: ${{ steps.if_running.outputs.running && failure() }}
@@ -317,7 +317,6 @@ jobs:
           docker-compose --profile="${{ matrix.implementation.profile }}" logs web frontend
 
           docker compose cp playwright:/work/playwright/test-results playwright/
-          docker cp $(docker-compose ps -qa runner | head -1):/work/tmp .
 
       - name: Upload Playwright screenshots
         if: ${{ steps.if_running.outputs.running && failure() }}
