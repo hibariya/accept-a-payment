@@ -102,8 +102,8 @@ RSpec.describe 'Custom payment flow', type: :system do
     end
 
     click_on 'Pay'
-    expect(page).to have_no_content('succeeded')
-    expect(page).to have_content('The payment method type provided: fpx is invalid') # This payment method is available to Stripe accounts in MY and your Stripe account is in US.'
+    click_on 'Authorize Test Payment'
+    expect(page).to have_content('Payment succeeded')
   end
 
   example 'Giropay: happy path' do
