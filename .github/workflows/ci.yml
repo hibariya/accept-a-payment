@@ -206,6 +206,7 @@ jobs:
         with:
           repository: 'stripe-samples/sample-ci'
           path: 'sample-ci'
+          ref: selenium
 
       - name: Run tests
         if: ${{ steps.if_running.outputs.running }}
