@@ -13,6 +13,7 @@ StripeConfiguration.AppInfo = new AppInfo
 };
 
 StripeConfiguration.ApiKey = Environment.GetEnvironmentVariable("STRIPE_SECRET_KEY");
+StripeConfiguration.ApiVersion = "2020-08-27";
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.Configure<StripeOptions>(options =>
