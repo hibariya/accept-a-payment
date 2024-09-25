@@ -31,6 +31,7 @@ jobs:
         with:
           repository: 'stripe-samples/sample-ci'
           path: 'sample-ci'
+          ref: stripe-cli-latest
 
       - name: Run tests
         env:
