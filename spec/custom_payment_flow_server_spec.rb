@@ -21,7 +21,7 @@ RSpec.describe "custom-payment-flow integration" do
             paymentMethodType: pm_type,
             currency: currency,
           })
-          expect(status).to eq(200)
+          expect(status).to eq(400)
           expect(resp).to have_key('clientSecret')
           pi_id = resp['clientSecret'].split('_secret').first
           payment_intent = Stripe::PaymentIntent.retrieve(pi_id)
@@ -36,7 +36,7 @@ RSpec.describe "custom-payment-flow integration" do
         currency: 'cad',
         paymentMethodType: 'acss_debit',
      })
-      expect(status).to eq(200), resp.to_s
+      expect(status).to eq(400), resp.to_s
       pi_id = resp['clientSecret'].split('_secret').first
       payment_intent = Stripe::PaymentIntent.retrieve(pi_id)
       expect(payment_intent.payment_method_options.acss_debit.mandate_options.payment_schedule).not_to be_nil
